@@ -1,0 +1,1957 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ace Respiratory | Contact & Path to TMC High Cut Score</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: {
+                            DEFAULT: '#07225c',
+                            med: '#0d3278',
+                            dark: '#051842'
+                        },
+                        brand: {
+                            DEFAULT: '#0b72d7',
+                            light: '#dcebfb'
+                        },
+                        gold: {
+                            DEFAULT: '#f6b233',
+                            hover: '#e59f1f'
+                        },
+                        ice: {
+                            DEFAULT: '#eaf4fb',
+                            input: '#f3f7fb',
+                            border: '#dce5f0'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Plus Jakarta Sans Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: #07225c;
+            background-color: #eaf4fb;
+            overflow-x: hidden;
+        }
+
+        /* Custom Brush Stroke Yellow Badges matching screenshot */
+        .brush-badge {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1;
+        }
+        .brush-badge svg.brush-bg {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            filter: drop-shadow(0 2px 5px rgba(246, 178, 51, 0.25));
+        }
+
+        /* Active Navigation Underline matching screenshot */
+        .nav-tab {
+            position: relative;
+            padding-bottom: 6px;
+            transition: color 0.2s ease;
+        }
+        .nav-tab.active::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            height: 3.5px;
+            background-color: #f6b233;
+            border-radius: 2px;
+        }
+
+        /* Contact Hero Studio Background */
+        .hero-studio-bg {
+            background: radial-gradient(circle at 55% 35%, rgba(255, 255, 255, 0.96) 0%, rgba(235, 245, 252, 0.9) 48%, rgba(224, 237, 248, 0.95) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Wood Desk Surface on Right Side of Hero */
+        .wood-surface {
+            background: linear-gradient(180deg, #d7b38c 0%, #c69c72 35%, #b3865c 100%);
+            box-shadow: inset 0 3px 8px rgba(255, 255, 255, 0.35);
+        }
+
+        /* Instagram Gradient */
+        .ig-gradient {
+            background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+        }
+
+        /* 3D Flashcard Flip */
+        .perspective-1000 {
+            perspective: 1000px;
+        }
+        .transform-style-3d {
+            transform-style: preserve-3d;
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .backface-hidden {
+            backface-visibility: hidden;
+        }
+        .rotate-y-180 {
+            transform: rotateY(180deg);
+        }
+
+        /* Modal & Drawer Animations */
+        @keyframes modalPop {
+            0% { opacity: 0; transform: scale(0.95) translateY(8px); }
+            100% { opacity: 1; transform: scale(1) translateY(0); }
+        }
+        .animate-modal {
+            animation: modalPop 0.22s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col selection:bg-gold selection:text-navy">
+
+    <!-- ===================================================================== -->
+    <!-- REUSABLE SVG DEFINITIONS (LOGO & YELLOW BRUSH STROKE)                 -->
+    <!-- ===================================================================== -->
+    <svg class="hidden" aria-hidden="true">
+        <defs>
+            <!-- Circular Ace Respiratory Emblem (Lungs + Clinician) -->
+            <g id="ace-logo-mark">
+                <linearGradient id="logoBlueGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#0088ee" />
+                    <stop offset="55%" stop-color="#0055b3" />
+                    <stop offset="100%" stop-color="#07225c" />
+                </linearGradient>
+                <clipPath id="circleClip">
+                    <circle cx="50" cy="50" r="48" />
+                </clipPath>
+                <circle cx="50" cy="50" r="48" fill="url(#logoBlueGrad)" />
+                <g clip-path="url(#circleClip)">
+                    <!-- Light blue curved base arch -->
+                    <ellipse cx="50" cy="92" rx="46" ry="16" fill="#46b2f0" />
+                    <path d="M 8 78 Q 50 68 92 78" fill="none" stroke="#ffffff" stroke-width="2" opacity="0.85" />
+                    <!-- White Lungs Illustration -->
+                    <path d="M 41 22 L 41 39 M 38 22 L 44 22" stroke="#ffffff" stroke-width="3.2" stroke-linecap="round" />
+                    <path d="M 38 34 C 24 31, 14 44, 15 62 C 15 71, 24 73, 34 68 C 38 66, 39 58, 39 45 Z" fill="#ffffff" />
+                    <path d="M 44 34 C 58 31, 66 44, 65 62 C 65 71, 56 73, 46 68 C 43 66, 43 58, 43 45 Z" fill="#ffffff" />
+                    <!-- Bronchial Tree -->
+                    <path d="M 41 37 L 31 47 M 31 47 L 24 45 M 31 47 L 25 56 M 31 47 L 32 61" stroke="#0066cc" stroke-width="2" stroke-linecap="round" fill="none" />
+                    <path d="M 41 37 L 51 47 M 51 47 L 58 45 M 51 47 L 57 56 M 51 47 L 50 61" stroke="#0066cc" stroke-width="2" stroke-linecap="round" fill="none" />
+                    <!-- Clinician Character (Bottom Right) -->
+                    <path d="M 55 79 C 55 67, 83 67, 83 79 Z" fill="#ffffff" stroke="#07225c" stroke-width="2" />
+                    <path d="M 65 69 L 69 76 L 73 69" fill="#38bdf8" stroke="#07225c" stroke-width="1.5" />
+                    <path d="M 62 70 C 62 77, 76 77, 76 70" fill="none" stroke="#07225c" stroke-width="1.8" />
+                    <circle cx="75" cy="75" r="2.2" fill="#f6b233" stroke="#07225c" stroke-width="1.2" />
+                    <circle cx="69" cy="57" r="9.5" fill="#ffffff" stroke="#07225c" stroke-width="2.2" />
+                    <path d="M 60 55 C 60 47, 78 47, 78 55 C 75 51, 64 51, 60 55 Z" fill="#07225c" />
+                    <circle cx="66" cy="57.5" r="1.3" fill="#07225c" />
+                    <circle cx="72" cy="57.5" r="1.3" fill="#07225c" />
+                    <path d="M 66.5 61.5 Q 69 63.5 71.5 61.5" fill="none" stroke="#07225c" stroke-width="1.5" stroke-linecap="round" />
+                </g>
+            </g>
+
+            <!-- Yellow Brush Stroke Shape -->
+            <g id="yellow-brush">
+                <path d="M 14 6 C 85 1, 215 2, 286 5 C 296 6, 300 12, 294 17 C 299 21, 297 28, 289 30 C 295 35, 291 42, 280 43 C 195 46, 95 45, 16 42 C 5 41, 2 35, 7 30 C 1 25, 3 18, 10 15 C 4 11, 7 6, 14 6 Z" fill="#f6b233" />
+            </g>
+        </defs>
+    </svg>
+
+    <!-- ===================================================================== -->
+    <!-- REQUIREMENT 3: CLICKABLE TOP BANNER ("Get Ready for 2027 RTE")        -->
+    <!-- ===================================================================== -->
+    <div id="rte-top-banner"
+         onclick="openRteModal()"
+         role="button"
+         tabindex="0"
+         aria-label="Get Ready for 2027 RTE - Click for details"
+         onkeydown="if(event.key==='Enter'||event.key===' ') openRteModal()"
+         class="bg-navy text-white px-4 py-2 text-center text-xs sm:text-sm font-semibold cursor-pointer hover:bg-navy-med transition flex items-center justify-center gap-2.5 border-b-2 border-gold z-40">
+        <span class="inline-block w-2 h-2 rounded-full bg-gold animate-ping"></span>
+        <span class="bg-gold text-navy font-extrabold px-2.5 py-0.5 rounded-full text-xs uppercase tracking-wide">
+            Get Ready for 2027 RTE
+        </span>
+        <span class="hidden md:inline text-slate-200 font-medium">
+            Preparing for the 2027 Respiratory Therapy Examination? Click here for upcoming study resources!
+        </span>
+        <span class="text-gold font-bold underline ml-1">Read Update &rarr;</span>
+    </div>
+
+    <!-- ===================================================================== -->
+    <!-- HEADER & NAVIGATION BAR (Exact Match to Screenshot)                   -->
+    <!-- ===================================================================== -->
+    <header class="bg-white border-b border-slate-100 sticky top-0 z-30 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10">
+            <div class="flex items-center justify-between h-20 sm:h-24">
+
+                <!-- Left: Logo + Brand Name -->
+                <a href="javascript:void(0)" onclick="switchTab('Contact')" class="flex items-center gap-3.5 group focus:outline-none">
+                    <svg class="w-12 h-12 sm:w-14 sm:h-14 flex-shrink-0 transition-transform duration-200 group-hover:scale-105" viewBox="0 0 100 100">
+                        <use href="#ace-logo-mark"></use>
+                    </svg>
+                    <span class="text-xl sm:text-2xl lg:text-[26px] font-extrabold text-navy tracking-tight whitespace-nowrap">
+                        Ace Respiratory
+                    </span>
+                </a>
+
+                <!-- Center: 7 Navigation Tabs -->
+                <nav class="hidden lg:flex items-center space-x-6 xl:space-x-8 text-[15px] font-semibold text-navy" aria-label="Main Navigation">
+                    <button onclick="switchTab('Home')" data-nav="Home" class="nav-tab hover:text-brand">Home</button>
+                    <button onclick="switchTab('Practice Exams')" data-nav="Practice Exams" class="nav-tab hover:text-brand whitespace-nowrap">Practice Exams</button>
+                    <button onclick="switchTab('Live Review')" data-nav="Live Review" class="nav-tab hover:text-brand whitespace-nowrap">Live Review</button>
+                    <button onclick="switchTab('Study Tools')" data-nav="Study Tools" class="nav-tab hover:text-brand whitespace-nowrap">Study Tools</button>
+                    <button onclick="switchTab('All Products')" data-nav="All Products" class="nav-tab hover:text-brand whitespace-nowrap">All Products</button>
+                    <button onclick="switchTab('FAQ')" data-nav="FAQ" class="nav-tab hover:text-brand">FAQ</button>
+                    <button onclick="switchTab('Contact')" data-nav="Contact" class="nav-tab active hover:text-brand">Contact</button>
+                </nav>
+
+                <!-- Right: Interactive Search, Member Account, and Cart Icons -->
+                <div class="flex items-center space-x-3 sm:space-x-5 text-navy">
+                    <!-- Search Modal Trigger -->
+                    <button onclick="openSearchModal()" aria-label="Search Ace Respiratory" title="Search Sessions & Exams" class="p-1.5 hover:text-brand transition">
+                        <svg class="w-5 h-5 sm:w-[22px] sm:h-[22px]" fill="none" stroke="currentColor" stroke-width="2.4" viewBox="0 0 24 24">
+                            <circle cx="11" cy="11" r="7"></circle>
+                            <path stroke-linecap="round" d="M20 20l-4.2-4.2"></path>
+                        </svg>
+                    </button>
+
+                    <!-- Member Registration / Account Modal Trigger -->
+                    <button onclick="openAccountModal()" aria-label="Member Registration & Account" title="Member Registration" class="p-1.5 hover:text-brand transition">
+                        <svg class="w-6 h-6 sm:w-[25px] sm:h-[25px]" viewBox="0 0 24 24" fill="currentColor">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm0 5a3.2 3.2 0 100 6.4 3.2 3.2 0 000-6.4zm0 12.2a7.5 7.5 0 01-6-3c.03-2 4-3.1 6-3.1s5.97 1.1 6 3.1a7.5 7.5 0 01-6 3z" />
+                        </svg>
+                    </button>
+
+                    <!-- Shopping Cart Drawer Trigger with Live Counter -->
+                    <button onclick="toggleCartDrawer(true)" aria-label="Shopping Cart" title="View Shopping Cart" class="relative p-1.5 hover:text-brand transition">
+                        <svg class="w-5 h-5 sm:w-[22px] sm:h-[22px]" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-1.5 5h12.5M9 21a1 1 0 100-2 1 1 0 000 2zm8 0a1 1 0 100-2 1 1 0 000 2z" />
+                        </svg>
+                        <span id="cart-badge" class="absolute -top-1 -right-1.5 bg-gold text-navy text-[11px] font-extrabold w-5 h-5 rounded-full flex items-center justify-center shadow">
+                            0
+                        </span>
+                    </button>
+
+                    <!-- Mobile Hamburger Button -->
+                    <button onclick="toggleMobileMenu()" aria-label="Toggle Menu" class="lg:hidden p-2 rounded-lg text-navy hover:bg-slate-100 focus:outline-none">
+                        <svg id="menu-icon-open" class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2.4" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                        <svg id="menu-icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" stroke-width="2.4" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Mobile Dropdown Navigation -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-white border-t border-slate-200 px-4 pt-3 pb-5 space-y-1.5 shadow-xl">
+            <button onclick="switchTab('Home'); toggleMobileMenu();" class="block w-full text-left px-4 py-2.5 rounded-lg text-base font-semibold text-navy hover:bg-ice">Home</button>
+            <button onclick="switchTab('Practice Exams'); toggleMobileMenu();" class="block w-full text-left px-4 py-2.5 rounded-lg text-base font-semibold text-navy hover:bg-ice">Practice Exams</button>
+            <button onclick="switchTab('Live Review'); toggleMobileMenu();" class="block w-full text-left px-4 py-2.5 rounded-lg text-base font-semibold text-navy hover:bg-ice">Live Review (40 Sessions)</button>
+            <button onclick="switchTab('Study Tools'); toggleMobileMenu();" class="block w-full text-left px-4 py-2.5 rounded-lg text-base font-semibold text-navy hover:bg-ice">Study Tools</button>
+            <button onclick="switchTab('All Products'); toggleMobileMenu();" class="block w-full text-left px-4 py-2.5 rounded-lg text-base font-semibold text-navy hover:bg-ice">All Products & Plans</button>
+            <button onclick="switchTab('FAQ'); toggleMobileMenu();" class="block w-full text-left px-4 py-2.5 rounded-lg text-base font-semibold text-navy hover:bg-ice">FAQ</button>
+            <button onclick="switchTab('Contact'); toggleMobileMenu();" class="block w-full text-left px-4 py-2.5 rounded-lg text-base font-bold text-navy bg-gold/20 border-l-4 border-gold">Contact</button>
+            <div class="pt-2">
+                <button onclick="openRteModal(); toggleMobileMenu();" class="w-full bg-gold hover:bg-gold-hover text-navy font-extrabold py-3 rounded-full shadow-sm text-sm">
+                    Get Ready for 2027 RTE
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ===================================================================== -->
+    <!-- MAIN DYNAMIC VIEW CONTAINER                                           -->
+    <!-- ===================================================================== -->
+    <main class="flex-grow flex flex-col">
+
+        <!-- ================================================================= -->
+        <!-- REQUIREMENT 2: "COMING SOON" BANNER CARD FOR NON-CONTACT TABS     -->
+        <!-- Shows required "Coming Soon" text + Toggle for Full Dynamic Page  -->
+        <!-- ================================================================= -->
+        <div id="coming-soon-banner-wrapper" class="hidden bg-gradient-to-b from-white to-ice border-b border-ice-border px-4 sm:px-6 lg:px-10 py-8">
+            <div class="max-w-4xl mx-auto bg-white rounded-3xl shadow-md border-2 border-brand-light p-6 sm:p-9 text-center space-y-4">
+                <div class="inline-flex items-center gap-2 bg-ice px-4 py-1 rounded-full text-xs font-extrabold uppercase tracking-wider text-brand">
+                    <span id="coming-soon-active-tab-name">Tab Section</span>
+                    <span>•</span>
+                    <span>Ace Respiratory</span>
+                </div>
+
+                <!-- Required Heading: Coming Soon -->
+                <h1 class="text-3xl sm:text-5xl font-extrabold text-navy tracking-tight">
+                    Coming Soon
+                </h1>
+
+                <!-- Required Text: “New learning tools and resources are on the way. Check back soon!” -->
+                <p class="text-lg sm:text-xl text-navy-med font-semibold max-w-2xl mx-auto bg-ice/70 py-4 px-6 rounded-2xl border border-ice-border">
+                    “New learning tools and resources are on the way. Check back soon!”
+                </p>
+
+                <!-- Interactive Controls: Return to Contact, 2027 RTE Pop-up, or Toggle Live Preview -->
+                <div class="pt-2 flex flex-wrap items-center justify-center gap-3">
+                    <button onclick="switchTab('Contact')" class="bg-gold hover:bg-gold-hover text-navy font-extrabold px-6 py-2.5 rounded-full text-sm shadow-sm transition">
+                        &larr; Back to Contact Page
+                    </button>
+                    <button onclick="openRteModal()" class="bg-navy hover:bg-navy-med text-white font-bold px-6 py-2.5 rounded-full text-sm shadow-sm transition">
+                        Get Ready for 2027 RTE
+                    </button>
+                    <button id="toggle-preview-btn" onclick="toggleDynamicPreviewMode()" class="bg-ice hover:bg-brand-light text-navy font-bold px-5 py-2.5 rounded-full text-sm border border-ice-border transition">
+                        Hide Live Preview Below
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================================================================= -->
+        <!-- TAB VIEW 1: CONTACT PAGE (Default View - Exact Screenshot Match)  -->
+        <!-- ================================================================= -->
+        <div id="view-Contact" class="tab-view flex-grow flex flex-col">
+
+            <!-- HERO BANNER SECTION -->
+            <section class="hero-studio-bg border-b border-slate-200/70">
+                <div class="absolute inset-0 pointer-events-none overflow-hidden">
+                    <div class="absolute -top-10 left-1/4 w-96 h-96 bg-white/80 rounded-full blur-2xl"></div>
+                    <div class="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-[#dfd3c3]/50 via-[#e8dfd3]/25 to-transparent"></div>
+                    <div class="hidden md:block absolute bottom-0 right-0 w-[64%] h-[23%] wood-surface rounded-tl-3xl opacity-95"></div>
+                    <div class="hidden md:block absolute bottom-0 right-[50%] w-48 h-[23%] bg-gradient-to-r from-[#eaf4fb] via-[#eaf4fb]/80 to-transparent"></div>
+                </div>
+
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 relative z-10 py-8 sm:py-10 lg:py-11">
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-4 items-center">
+
+                        <!-- Left Column: Hero Text -->
+                        <div class="lg:col-span-6 space-y-3 sm:space-y-4 text-left z-10">
+                            <div class="brush-badge px-7 py-1.5">
+                                <svg class="brush-bg" viewBox="0 0 300 48" preserveAspectRatio="none">
+                                    <use href="#yellow-brush"></use>
+                                </svg>
+                                <span class="text-navy font-extrabold text-sm sm:text-base tracking-[0.08em] uppercase">
+                                    GET IN TOUCH
+                                </span>
+                            </div>
+
+                            <h1 class="text-3xl sm:text-5xl xl:text-[52px] font-extrabold text-navy tracking-tight leading-[1.12]">
+                                Contact Ace Respiratory
+                            </h1>
+
+                            <div class="space-y-1 pt-1">
+                                <p class="text-lg sm:text-2xl text-navy font-normal leading-snug">
+                                    Have a question? We’re here to help.
+                                </p>
+                                <p class="text-lg sm:text-2xl font-extrabold text-navy tracking-tight">
+                                    <a href="mailto:acerespiratory@gmail.com" class="hover:underline">acerespiratory@gmail.com</a>
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Right Column: Studio Desk Scene with Laptop, Mug, Notebook & Plant -->
+                        <div class="lg:col-span-6 relative flex justify-center lg:justify-end">
+                            <div class="w-full max-w-[580px]">
+                                <svg viewBox="0 0 620 315" class="w-full h-auto drop-shadow-sm select-none" role="img" aria-label="Laptop displaying an envelope icon alongside an Ace Respiratory coffee mug and notebook on a wooden desk">
+                                    <defs>
+                                        <linearGradient id="laptopScreenBg" x1="0%" y1="0%" x2="100%" y2="100%">
+                                            <stop offset="0%" stop-color="#f5f9fd" />
+                                            <stop offset="50%" stop-color="#edf4fc" />
+                                            <stop offset="100%" stop-color="#e3eef9" />
+                                        </linearGradient>
+                                        <linearGradient id="mugGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                                            <stop offset="0%" stop-color="#e5ebf0" />
+                                            <stop offset="22%" stop-color="#ffffff" />
+                                            <stop offset="80%" stop-color="#f7f9fb" />
+                                            <stop offset="100%" stop-color="#d5dde4" />
+                                        </linearGradient>
+                                        <linearGradient id="aluminumBase" x1="0%" y1="0%" x2="100%" y2="0%">
+                                            <stop offset="0%" stop-color="#b8bec5" />
+                                            <stop offset="30%" stop-color="#e2e6ea" />
+                                            <stop offset="70%" stop-color="#cfd5dc" />
+                                            <stop offset="100%" stop-color="#8c939c" />
+                                        </linearGradient>
+                                        <linearGradient id="woodDeskMobile" x1="0%" y1="0%" x2="0%" y2="100%">
+                                            <stop offset="0%" stop-color="#dcc0a1" />
+                                            <stop offset="35%" stop-color="#cda67e" />
+                                            <stop offset="100%" stop-color="#b88c61" />
+                                        </linearGradient>
+                                        <filter id="softBlur" x="-20%" y="-20%" width="140%" height="140%">
+                                            <feGaussianBlur stdDeviation="3.5" />
+                                        </filter>
+                                        <filter id="dropShadow" x="-10%" y="-10%" width="125%" height="125%">
+                                            <feDropShadow dx="0" dy="8" stdDeviation="6" flood-color="#07225c" flood-opacity="0.18" />
+                                        </filter>
+                                    </defs>
+
+                                    <!-- Background Potted Greenery Plant -->
+                                    <g filter="url(#softBlur)" opacity="0.88">
+                                        <path d="M 278 165 L 332 165 L 325 228 L 285 228 Z" fill="#e6e4e0" />
+                                        <ellipse cx="275" cy="130" rx="18" ry="32" transform="rotate(-28 275 130)" fill="#4c7c34" />
+                                        <ellipse cx="295" cy="115" rx="16" ry="38" transform="rotate(-10 295 115)" fill="#629644" />
+                                        <ellipse cx="318" cy="112" rx="17" ry="40" transform="rotate(12 318 112)" fill="#55883b" />
+                                        <ellipse cx="338" cy="128" rx="18" ry="34" transform="rotate(32 338 128)" fill="#6da34d" />
+                                        <ellipse cx="262" cy="150" rx="15" ry="26" transform="rotate(-48 262 150)" fill="#5e9040" />
+                                        <ellipse cx="348" cy="148" rx="15" ry="26" transform="rotate(45 348 148)" fill="#487531" />
+                                    </g>
+
+                                    <!-- Wooden Desk Band -->
+                                    <rect x="40" y="226" width="575" height="82" rx="14" fill="url(#woodDeskMobile)" opacity="0.85" />
+                                    <path d="M 70 250 L 590 250 M 120 278 L 570 278" stroke="#a6794e" stroke-width="1.2" opacity="0.35" />
+
+                                    <!-- White Coffee Mug with Ace Respiratory Logo -->
+                                    <g filter="url(#dropShadow)">
+                                        <path d="M 254 155 C 226 155, 226 212, 254 212" fill="none" stroke="#eef2f6" stroke-width="11" stroke-linecap="round" />
+                                        <path d="M 254 155 C 230 155, 230 212, 254 212" fill="none" stroke="#d0d8e0" stroke-width="2" />
+                                        <path d="M 250 140 L 336 140 L 334 226 C 334 235, 252 235, 252 226 Z" fill="url(#mugGrad)" />
+                                        <ellipse cx="293" cy="140" rx="43" ry="6.5" fill="#d9e0e7" stroke="#ffffff" stroke-width="1.5" />
+                                        <g transform="translate(271, 155) scale(0.45)">
+                                            <use href="#ace-logo-mark"></use>
+                                        </g>
+                                        <text x="293.5" y="210" text-anchor="middle" fill="#07225c" font-size="6.8" font-weight="800" letter-spacing="0.4">ACE RESPIRATORY</text>
+                                    </g>
+
+                                    <!-- Notebook & Pen -->
+                                    <g filter="url(#dropShadow)">
+                                        <polygon points="122,243 224,225 268,243 166,263" fill="#f7f9fa" stroke="#cbd5e1" stroke-width="1.2" />
+                                        <polygon points="122,243 166,263 166,271 122,250" fill="#e2e8f0" />
+                                        <polygon points="166,263 268,243 268,250 166,271" fill="#cbd5e1" />
+                                        <line x1="166" y1="266" x2="268" y2="246" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="3,2" />
+                                        <g transform="rotate(-13 232 258)">
+                                            <rect x="190" y="255" width="76" height="6.5" rx="3.2" fill="#1e293b" />
+                                            <polygon points="190,255.5 180,258.2 190,261" fill="#cbd5e1" />
+                                            <rect x="234" y="255" width="4" height="6.5" fill="#94a3b8" />
+                                            <rect x="242" y="253.5" width="18" height="2" rx="1" fill="#cbd5e1" />
+                                        </g>
+                                    </g>
+
+                                    <!-- Open Laptop with Navy Envelope & 3 Yellow Rays -->
+                                    <g filter="url(#dropShadow)">
+                                        <path d="M 358 24 L 584 14 C 592 14, 597 19, 596 27 L 585 232 C 584 238, 579 242, 572 242 L 348 232 C 342 232, 338 227, 339 220 L 348 34 C 349 28, 353 24, 358 24 Z" fill="#111827" stroke="#374151" stroke-width="2" />
+                                        <circle cx="470" cy="25" r="2" fill="#374151" />
+                                        <polygon points="360,37 582,28 573,221 350,214" fill="url(#laptopScreenBg)" />
+                                        <g transform="translate(464, 134) rotate(-1.5)">
+                                            <line x1="0" y1="-64" x2="0" y2="-47" stroke="#f6b233" stroke-width="5" stroke-linecap="round" />
+                                            <line x1="-26" y1="-56" x2="-16" y2="-43" stroke="#f6b233" stroke-width="5" stroke-linecap="round" />
+                                            <line x1="26" y1="-56" x2="16" y2="-43" stroke="#f6b233" stroke-width="5" stroke-linecap="round" />
+                                            <rect x="-46" y="-32" width="92" height="64" rx="10" fill="#ffffff" stroke="#07225c" stroke-width="5.5" />
+                                            <path d="M -43 -27 L 0 6 L 43 -27" fill="none" stroke="#07225c" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" />
+                                            <line x1="-42" y1="28" x2="-12" y2="-2" stroke="#07225c" stroke-width="5" stroke-linecap="round" />
+                                            <line x1="42" y1="28" x2="12" y2="-2" stroke="#07225c" stroke-width="5" stroke-linecap="round" />
+                                        </g>
+                                        <polygon points="344,231 581,240 538,278 276,262" fill="url(#aluminumBase)" />
+                                        <polygon points="348,235 562,243 538,261 318,250" fill="#1e293b" />
+                                        <line x1="338" y1="240" x2="554" y2="248" stroke="#475569" stroke-width="1" />
+                                        <line x1="328" y1="245" x2="546" y2="254" stroke="#475569" stroke-width="1" />
+                                        <polygon points="392,256 456,259 444,269 378,265" fill="#94a3b8" opacity="0.6" />
+                                        <path d="M 276 262 L 538 278 C 540 282, 536 285, 530 285 L 282 269 C 276 268, 274 265, 276 262 Z" fill="#9ca3af" />
+                                    </g>
+                                </svg>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+            <!-- TWO-COLUMN CONTACT FORM & LET'S CONNECT SECTION -->
+            <section class="bg-ice flex-grow py-10 sm:py-14 px-4 sm:px-6 lg:px-10">
+                <div class="max-w-7xl mx-auto">
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
+
+                        <!-- LEFT CARD: Send Us a Message -->
+                        <div class="lg:col-span-7 bg-white rounded-2xl shadow-sm border border-slate-100 p-6 sm:p-9">
+                            <h2 class="text-2xl sm:text-[28px] font-extrabold text-navy mb-6 tracking-tight">
+                                Send Us a Message
+                            </h2>
+
+                            <form id="contact-form" onsubmit="handleContactSubmit(event)" class="space-y-4">
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                    <div>
+                                        <label for="input-name" class="block text-sm font-bold text-navy mb-1.5">Name</label>
+                                        <input type="text" id="input-name" required
+                                               class="w-full h-11 px-3.5 rounded-lg bg-ice-input border border-ice-border text-navy font-medium focus:outline-none focus:ring-2 focus:ring-gold focus:bg-white transition">
+                                    </div>
+                                    <div>
+                                        <label for="input-email" class="block text-sm font-bold text-navy mb-1.5">Email Address</label>
+                                        <input type="email" id="input-email" required
+                                               class="w-full h-11 px-3.5 rounded-lg bg-ice-input border border-ice-border text-navy font-medium focus:outline-none focus:ring-2 focus:ring-gold focus:bg-white transition">
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <label for="input-subject" class="block text-sm font-bold text-navy mb-1.5">Subject</label>
+                                    <input type="text" id="input-subject" required
+                                           class="w-full h-11 px-3.5 rounded-lg bg-ice-input border border-ice-border text-navy font-medium focus:outline-none focus:ring-2 focus:ring-gold focus:bg-white transition">
+                                </div>
+
+                                <div>
+                                    <label for="input-message" class="block text-sm font-bold text-navy mb-1.5">Message</label>
+                                    <textarea id="input-message" rows="4" required
+                                              class="w-full p-3.5 rounded-lg bg-ice-input border border-ice-border text-navy font-medium focus:outline-none focus:ring-2 focus:ring-gold focus:bg-white transition resize-y"></textarea>
+                                </div>
+
+                                <div class="pt-2 flex flex-wrap items-center gap-4">
+                                    <button type="submit"
+                                            class="inline-flex items-center justify-center gap-3 bg-gold hover:bg-gold-hover text-navy font-extrabold text-base px-9 py-3.5 rounded-full shadow-sm hover:shadow transition transform active:scale-95">
+                                        <span>Send Message</span>
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M13 6l6 6-6 6" />
+                                        </svg>
+                                    </button>
+
+                                    <div id="contact-form-feedback" class="hidden text-sm font-bold text-emerald-700 bg-emerald-50 border border-emerald-200 px-4 py-2 rounded-xl">
+                                        ✓ Message sent to Ace Respiratory! We will reply shortly.
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                        <!-- RIGHT COLUMN: Let's Connect & Follow Ace Respiratory -->
+                        <div class="lg:col-span-5 flex flex-col justify-center space-y-7 pt-1 lg:pt-4">
+
+                            <!-- Let's Connect Block -->
+                            <div class="space-y-4">
+                                <div class="brush-badge px-8 py-2">
+                                    <svg class="brush-bg" viewBox="0 0 300 48" preserveAspectRatio="none">
+                                        <use href="#yellow-brush"></use>
+                                    </svg>
+                                    <h2 class="text-xl sm:text-2xl font-extrabold text-navy tracking-tight">
+                                        Let’s Connect
+                                    </h2>
+                                </div>
+
+                                <div class="flex items-center gap-4 sm:gap-5">
+                                    <a href="mailto:acerespiratory@gmail.com"
+                                       class="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-brand-light flex items-center justify-center flex-shrink-0 hover:scale-105 transition shadow-xs"
+                                       aria-label="Email Ace Respiratory">
+                                        <svg class="w-7 h-7 sm:w-8 sm:h-8 text-navy" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+                                            <rect x="3" y="5" width="18" height="14" rx="2" />
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M3 7l9 6 9-6" />
+                                        </svg>
+                                    </a>
+                                    <a href="mailto:acerespiratory@gmail.com"
+                                       class="text-lg sm:text-2xl xl:text-[26px] font-extrabold text-navy hover:underline break-all sm:break-normal">
+                                        acerespiratory@gmail.com
+                                    </a>
+                                </div>
+
+                                <!-- Phone & Location from acerespiratory.com -->
+                                <div class="flex flex-wrap items-center gap-4 text-xs sm:text-sm font-bold text-navy-med pl-1 pt-1">
+                                    <a href="tel:2232272239" class="inline-flex items-center gap-1.5 hover:text-brand">
+                                        <span>📞 223-227-2239</span>
+                                    </a>
+                                    <span>•</span>
+                                    <span>📍 Miami, Florida 33128</span>
+                                </div>
+                            </div>
+
+                            <hr class="border-t border-slate-300/70">
+
+                            <!-- Follow Ace Respiratory Block with Official Social Links -->
+                            <div class="space-y-6">
+                                <div class="brush-badge px-8 py-2">
+                                    <svg class="brush-bg" viewBox="0 0 300 48" preserveAspectRatio="none">
+                                        <use href="#yellow-brush"></use>
+                                    </svg>
+                                    <h2 class="text-xl sm:text-2xl font-extrabold text-navy tracking-tight">
+                                        Follow Ace Respiratory
+                                    </h2>
+                                </div>
+
+                                <div class="grid grid-cols-3 sm:grid-cols-5 gap-4 sm:gap-3 pt-1 max-w-md sm:max-w-none">
+
+                                    <!-- Facebook Official Group -->
+                                    <a href="https://www.facebook.com/share/g/1A2RTKmPBS/" target="_blank" rel="noopener noreferrer" class="flex flex-col items-center group">
+                                        <div class="w-16 h-16 rounded-full bg-brand-light flex items-center justify-center group-hover:scale-105 transition">
+                                            <div class="w-12 h-12 rounded-full bg-[#1877F2] flex items-center justify-center text-white shadow-sm">
+                                                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                                    <path d="M15.12 5.32H17V2.14A26.11 26.11 0 0 0 14.26 2c-2.72 0-4.58 1.66-4.58 4.7v2.62H6.61v3.56h3.07V22h3.68v-9.12h3.06l.46-3.56h-3.52V6.65c0-1.05.29-1.73 1.76-1.73Z"/>
+                                                </svg>
+                                            </div>
+                                        </div>
+                                        <span class="mt-2 text-xs sm:text-sm font-semibold text-navy">Facebook</span>
+                                    </a>
+
+                                    <!-- TikTok Official -->
+                                    <a href="https://www.tiktok.com/@acerespiratory" target="_blank" rel="noopener noreferrer" class="flex flex-col items-center group">
+                                        <div class="w-16 h-16 rounded-full bg-brand-light flex items-center justify-center group-hover:scale-105 transition">
+                                            <div class="w-12 h-12 rounded-full bg-black flex items-center justify-center text-white shadow-sm relative overflow-hidden">
+                                                <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+                                                    <path d="M16.6 5.82s.51.5 0 0A4.278 4.278 0 0 1 15.54 3h-3.09v12.4a2.592 2.592 0 0 1-2.59 2.5c-1.42 0-2.6-1.16-2.6-2.6 0-1.72 1.66-3.01 3.37-2.48V9.66c-3.45-.46-6.47 2.22-6.47 5.64 0 3.33 2.76 5.7 5.69 5.7 3.14 0 5.69-2.55 5.69-5.7V9.01a7.35 7.35 0 0 0 4.3 1.38V7.3s-1.88.09-3.24-1.48z" fill="#25F4EE" transform="translate(-0.8, -0.6)"/>
+                                                    <path d="M16.6 5.82s.51.5 0 0A4.278 4.278 0 0 1 15.54 3h-3.09v12.4a2.592 2.592 0 0 1-2.59 2.5c-1.42 0-2.6-1.16-2.6-2.6 0-1.72 1.66-3.01 3.37-2.48V9.66c-3.45-.46-6.47 2.22-6.47 5.64 0 3.33 2.76 5.7 5.69 5.7 3.14 0 5.69-2.55 5.69-5.7V9.01a7.35 7.35 0 0 0 4.3 1.38V7.3s-1.88.09-3.24-1.48z" fill="#FE2C55" transform="translate(0.8, 0.6)"/>
+                                                    <path d="M16.6 5.82s.51.5 0 0A4.278 4.278 0 0 1 15.54 3h-3.09v12.4a2.592 2.592 0 0 1-2.59 2.5c-1.42 0-2.6-1.16-2.6-2.6 0-1.72 1.66-3.01 3.37-2.48V9.66c-3.45-.46-6.47 2.22-6.47 5.64 0 3.33 2.76 5.7 5.69 5.7 3.14 0 5.69-2.55 5.69-5.7V9.01a7.35 7.35 0 0 0 4.3 1.38V7.3s-1.88.09-3.24-1.48z" fill="#ffffff"/>
+                                                </svg>
+                                            </div>
+                                        </div>
+                                        <span class="mt-2 text-xs sm:text-sm font-semibold text-navy">TikTok</span>
+                                    </a>
+
+                                    <!-- Instagram Official -->
+                                    <a href="https://www.instagram.com/acerespiratory" target="_blank" rel="noopener noreferrer" class="flex flex-col items-center group">
+                                        <div class="w-16 h-16 rounded-full bg-brand-light flex items-center justify-center group-hover:scale-105 transition">
+                                            <div class="w-12 h-12 rounded-full ig-gradient flex items-center justify-center text-white shadow-sm">
+                                                <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+                                                    <rect x="3" y="3" width="18" height="18" rx="5" />
+                                                    <circle cx="12" cy="12" r="4" />
+                                                    <circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none" />
+                                                </svg>
+                                            </div>
+                                        </div>
+                                        <span class="mt-2 text-xs sm:text-sm font-semibold text-navy">Instagram</span>
+                                    </a>
+
+                                    <!-- Pinterest Official -->
+                                    <a href="https://in.pinterest.com/acerespiratory/" target="_blank" rel="noopener noreferrer" class="flex flex-col items-center group">
+                                        <div class="w-16 h-16 rounded-full bg-brand-light flex items-center justify-center group-hover:scale-105 transition">
+                                            <div class="w-12 h-12 rounded-full bg-[#E60023] flex items-center justify-center text-white shadow-sm">
+                                                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                                    <path d="M12.017 2C6.486 2 2 6.486 2 12.017c0 4.242 2.636 7.868 6.359 9.336-.088-.792-.167-2.007.035-2.872.182-.78 1.172-4.968 1.172-4.968s-.299-.599-.299-1.484c0-1.39.806-2.428 1.809-2.428.853 0 1.265.64 1.265 1.408 0 .858-.546 2.141-.828 3.33-.236.995.499 1.806 1.48 1.806 1.777 0 3.143-1.873 3.143-4.577 0-2.393-1.72-4.066-4.176-4.066-2.845 0-4.515 2.134-4.515 4.34 0 .859.331 1.781.744 2.281.082.099.094.186.069.287-.076.315-.245.995-.278 1.134-.044.183-.145.222-.335.134-1.249-.581-2.03-2.407-2.03-3.874 0-3.154 2.292-6.052 6.608-6.052 3.469 0 6.165 2.472 6.165 5.776 0 3.447-2.173 6.22-5.19 6.22-1.013 0-1.966-.527-2.292-1.148l-.623 2.378c-.226.869-.835 1.958-1.244 2.621.937.29 1.931.446 2.962.446 5.531 0 10.017-4.486 10.017-10.017C22.034 6.486 17.548 2 12.017 2z"/>
+                                                </svg>
+                                            </div>
+                                        </div>
+                                        <span class="mt-2 text-xs sm:text-sm font-semibold text-navy">Pinterest</span>
+                                    </a>
+
+                                    <!-- YouTube Official -->
+                                    <a href="https://www.youtube.com/@acerespiratory" target="_blank" rel="noopener noreferrer" class="flex flex-col items-center group">
+                                        <div class="w-16 h-16 rounded-full bg-brand-light flex items-center justify-center group-hover:scale-105 transition">
+                                            <div class="w-12 h-12 rounded-full bg-[#FF0000] flex items-center justify-center text-white shadow-sm">
+                                                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                                    <path d="M21.58 7.19c-.23-.86-.91-1.54-1.77-1.77C18.25 5 12 5 12 5s-6.25 0-7.81.42c-.86.23-1.54.91-1.77 1.77C2 8.75 2 12 2 12s0 3.25.42 4.81c.23.86.91 1.54 1.77 1.77C5.75 19 12 19 12 19s6.25 0 7.81-.42c.86-.23 1.54-.91 1.77-1.77C22 15.25 22 12 22 12s0-3.25-.42-4.81zM10 15V9l5.2 3-5.2 3z"/>
+                                                </svg>
+                                            </div>
+                                        </div>
+                                        <span class="mt-2 text-xs sm:text-sm font-semibold text-navy">YouTube</span>
+                                    </a>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- ================================================================= -->
+        <!-- TAB VIEW 2: HOME (Real Content from acerespiratory.com)           -->
+        <!-- ================================================================= -->
+        <div id="view-Home" class="tab-view hidden flex-grow py-10 px-4 sm:px-6 lg:px-10">
+            <div class="max-w-7xl mx-auto space-y-14">
+
+                <!-- Hero Card -->
+                <div class="bg-navy text-white rounded-3xl p-8 sm:p-12 shadow-xl relative overflow-hidden">
+                    <div class="max-w-3xl space-y-5 relative z-10">
+                        <span class="bg-gold text-navy font-extrabold px-4 py-1.5 rounded-full text-xs uppercase tracking-wider inline-block">
+                            Get a TMC High Cut Score
+                        </span>
+                        <h2 class="text-3xl sm:text-5xl font-extrabold leading-tight">
+                            Your Path to TMC Success Starts Here
+                        </h2>
+                        <p class="text-slate-200 text-lg sm:text-xl leading-relaxed">
+                            Our mission is to empower Respiratory Therapists with the wisdom to pass the TMC exam. We are offering <strong class="text-gold">1-hour live online study group sessions</strong>, full-length practice exams, and clinical simulation mastery.
+                        </p>
+                        <div class="pt-3 flex flex-wrap gap-4">
+                            <button onclick="openAccountModal()" class="bg-gold hover:bg-gold-hover text-navy font-extrabold px-8 py-3.5 rounded-full shadow transition">
+                                Start 3-Step Registration &rarr;
+                            </button>
+                            <button onclick="switchTab('All Products')" class="bg-white/15 hover:bg-white/25 text-white font-bold px-7 py-3.5 rounded-full border border-white/25 transition">
+                                View Membership Plans ($25/mo)
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3 Easy Steps to Register (from acerespiratory.com) -->
+                <div class="space-y-6">
+                    <div class="text-center">
+                        <div class="brush-badge px-7 py-1.5 mb-2">
+                            <svg class="brush-bg" viewBox="0 0 300 48" preserveAspectRatio="none"><use href="#yellow-brush"></use></svg>
+                            <span class="text-navy font-extrabold text-sm uppercase tracking-wider">HOW IT WORKS</span>
+                        </div>
+                        <h3 class="text-2xl sm:text-4xl font-extrabold text-navy">3 Easy Steps to Register</h3>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="bg-white rounded-2xl p-7 shadow-sm border border-slate-100 flex flex-col justify-between">
+                            <div class="space-y-3">
+                                <span class="w-12 h-12 rounded-2xl bg-brand-light text-navy font-extrabold text-xl flex items-center justify-center">1</span>
+                                <h4 class="text-xl font-extrabold text-navy">Fill Out Membership Registration Form</h4>
+                                <p class="text-navy-med text-sm leading-relaxed">
+                                    Submit your name, email, and preferred study schedule so our instructors can tailor your live review sessions.
+                                </p>
+                            </div>
+                            <button onclick="openAccountModal()" class="mt-6 text-brand font-extrabold text-sm hover:underline text-left">
+                                Open Registration Form &rarr;
+                            </button>
+                        </div>
+
+                        <div class="bg-white rounded-2xl p-7 shadow-sm border border-slate-100 flex flex-col justify-between">
+                            <div class="space-y-3">
+                                <span class="w-12 h-12 rounded-2xl bg-brand-light text-navy font-extrabold text-xl flex items-center justify-center">2</span>
+                                <h4 class="text-xl font-extrabold text-navy">Choose a Membership Plan</h4>
+                                <p class="text-navy-med text-sm leading-relaxed">
+                                    Select the Monthly Membership ($25/mo), Weekly Membership ($7.54/wk), Daily SMS Questions ($10/mo), or individual TMC Practice Tests.
+                                </p>
+                            </div>
+                            <button onclick="switchTab('All Products')" class="mt-6 text-brand font-extrabold text-sm hover:underline text-left">
+                                Compare Plans &amp; Pricing &rarr;
+                            </button>
+                        </div>
+
+                        <div class="bg-white rounded-2xl p-7 shadow-sm border border-slate-100 flex flex-col justify-between">
+                            <div class="space-y-3">
+                                <span class="w-12 h-12 rounded-2xl bg-brand-light text-navy font-extrabold text-xl flex items-center justify-center">3</span>
+                                <h4 class="text-xl font-extrabold text-navy">Check E-mail for Membership Link</h4>
+                                <p class="text-navy-med text-sm leading-relaxed">
+                                    Receive your personal Zoom study group link and immediate access to our 40 respiratory therapy review modules.
+                                </p>
+                            </div>
+                            <button onclick="switchTab('Live Review')" class="mt-6 text-brand font-extrabold text-sm hover:underline text-left">
+                                View Live Group Schedule &rarr;
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Real Student Testimonials from acerespiratory.com -->
+                <div class="space-y-6">
+                    <div class="text-center">
+                        <div class="brush-badge px-7 py-1.5 mb-2">
+                            <svg class="brush-bg" viewBox="0 0 300 48" preserveAspectRatio="none"><use href="#yellow-brush"></use></svg>
+                            <span class="text-navy font-extrabold text-sm uppercase tracking-wider">SUCCESS STORIES</span>
+                        </div>
+                        <h3 class="text-2xl sm:text-4xl font-extrabold text-navy">What Respiratory Therapists Say</h3>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div class="bg-white rounded-2xl p-8 shadow-sm border border-slate-100 space-y-4">
+                            <div class="flex items-center gap-1 text-gold text-lg">★★★★★</div>
+                            <p class="text-navy-med italic leading-relaxed">
+                                “I didn’t pass the TMC on my first attempt, so I joined Ace Respiratory. The practice TMCs were spot on, and the disease process sections helped me pass my clinical simulations as well!”
+                            </p>
+                            <div class="pt-2 flex items-center justify-between border-t border-slate-100">
+                                <span class="font-extrabold text-navy">Adam, 32</span>
+                                <span class="text-xs font-bold bg-emerald-50 text-emerald-700 px-3 py-1 rounded-full">Passed TMC &amp; CSE</span>
+                            </div>
+                        </div>
+
+                        <div class="bg-white rounded-2xl p-8 shadow-sm border border-slate-100 space-y-4">
+                            <div class="flex items-center gap-1 text-gold text-lg">★★★★★</div>
+                            <p class="text-navy-med italic leading-relaxed">
+                                “Living on the West Coast, the 1-hour Zoom study group meetings fit right into my schedule. Studying with a live instructor and peers kept me accountable until exam day.”
+                            </p>
+                            <div class="pt-2 flex items-center justify-between border-t border-slate-100">
+                                <span class="font-extrabold text-navy">Carly, 48</span>
+                                <span class="text-xs font-bold bg-brand-light text-navy px-3 py-1 rounded-full">Live Zoom Study Group Member</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ================================================================= -->
+        <!-- TAB VIEW 3: PRACTICE EXAMS (TMC Tests + Interactive Sample Quiz)  -->
+        <!-- ================================================================= -->
+        <div id="view-Practice Exams" class="tab-view hidden flex-grow py-10 px-4 sm:px-6 lg:px-10">
+            <div class="max-w-7xl mx-auto space-y-12">
+
+                <div class="text-center max-w-3xl mx-auto space-y-3">
+                    <div class="brush-badge px-7 py-1.5">
+                        <svg class="brush-bg" viewBox="0 0 300 48" preserveAspectRatio="none"><use href="#yellow-brush"></use></svg>
+                        <span class="text-navy font-extrabold text-sm uppercase tracking-wider">TMC EXAM SIMULATORS</span>
+                    </div>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-navy">NBRC-Style Practice Exams &amp; Diagnostic Quizzes</h2>
+                    <p class="text-navy-med">
+                        Familiarize yourself with the 160-question, 3-hour computer-based TMC examination format and achieve the High Cut Score.
+                    </p>
+                </div>
+
+                <!-- Interactive Sample TMC Mini-Quiz -->
+                <div class="bg-white rounded-3xl p-6 sm:p-9 shadow-md border-2 border-gold/40 space-y-6">
+                    <div class="flex flex-wrap items-center justify-between gap-4 border-b border-slate-100 pb-4">
+                        <div>
+                            <span class="text-xs font-extrabold uppercase tracking-wider text-brand bg-ice px-3 py-1 rounded-full">Interactive Try-It-Now</span>
+                            <h3 class="text-2xl font-extrabold text-navy mt-1">Live Sample TMC Practice Questions</h3>
+                        </div>
+                        <button onclick="resetSampleQuiz()" class="text-xs font-bold text-navy bg-ice hover:bg-brand-light px-4 py-2 rounded-full transition">
+                            Reset Sample Quiz
+                        </button>
+                    </div>
+
+                    <div id="sample-quiz-container" class="space-y-6"></div>
+                </div>
+
+                <!-- Practice Tests & Topic Quizzes Grid -->
+                <div id="practice-exams-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+
+            </div>
+        </div>
+
+        <!-- ================================================================= -->
+        <!-- TAB VIEW 4: LIVE REVIEW (Schedule + 40 Sessions Directory)        -->
+        <!-- ================================================================= -->
+        <div id="view-Live Review" class="tab-view hidden flex-grow py-10 px-4 sm:px-6 lg:px-10">
+            <div class="max-w-7xl mx-auto space-y-12">
+
+                <!-- Live Study Group Schedule with Time Zone Selector -->
+                <div class="bg-white rounded-3xl p-6 sm:p-10 shadow-sm border border-slate-100 space-y-6">
+                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                        <div class="space-y-2">
+                            <div class="brush-badge px-6 py-1">
+                                <svg class="brush-bg" viewBox="0 0 300 48" preserveAspectRatio="none"><use href="#yellow-brush"></use></svg>
+                                <span class="text-navy font-extrabold text-xs uppercase tracking-wider">1-HOUR ZOOM STUDY GROUPS</span>
+                            </div>
+                            <h2 class="text-2xl sm:text-4xl font-extrabold text-navy">Live Online Study Group Schedule</h2>
+                            <p class="text-navy-med text-sm sm:text-base">
+                                Select your time zone below to view our daily Day and Evening 1-hour live review sessions:
+                            </p>
+                        </div>
+
+                        <!-- Time Zone Selector Buttons -->
+                        <div class="flex flex-wrap gap-2">
+                            <button onclick="setTimezone('MST')" id="tz-MST" class="tz-btn bg-navy text-white font-bold px-4 py-2 rounded-full text-xs sm:text-sm transition">Mountain (MST)</button>
+                            <button onclick="setTimezone('PST')" id="tz-PST" class="tz-btn bg-ice text-navy font-bold px-4 py-2 rounded-full text-xs sm:text-sm hover:bg-brand-light transition">Pacific (PST)</button>
+                            <button onclick="setTimezone('CST')" id="tz-CST" class="tz-btn bg-ice text-navy font-bold px-4 py-2 rounded-full text-xs sm:text-sm hover:bg-brand-light transition">Central (CST)</button>
+                            <button onclick="setTimezone('EST')" id="tz-EST" class="tz-btn bg-ice text-navy font-bold px-4 py-2 rounded-full text-xs sm:text-sm hover:bg-brand-light transition">Eastern (EST)</button>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
+                        <div class="bg-ice rounded-2xl p-6 border border-ice-border flex items-center justify-between">
+                            <div class="space-y-1">
+                                <span class="text-xs font-extrabold uppercase tracking-wider text-brand">Daytime Live Session</span>
+                                <h3 id="schedule-day-time" class="text-2xl sm:text-3xl font-extrabold text-navy">12:00 PM Noon (MST)</h3>
+                                <p class="text-xs sm:text-sm text-navy-med">1-Hour Interactive Topic Review &amp; NBRC Question Breakdown</p>
+                            </div>
+                            <button onclick="addToCart('plan-monthly')" class="bg-gold hover:bg-gold-hover text-navy font-extrabold px-5 py-2.5 rounded-full text-xs sm:text-sm shadow-xs transition">
+                                Join Session
+                            </button>
+                        </div>
+
+                        <div class="bg-ice rounded-2xl p-6 border border-ice-border flex items-center justify-between">
+                            <div class="space-y-1">
+                                <span class="text-xs font-extrabold uppercase tracking-wider text-brand">Evening Live Session</span>
+                                <h3 id="schedule-evening-time" class="text-2xl sm:text-3xl font-extrabold text-navy">6:00 PM (MST)</h3>
+                                <p class="text-xs sm:text-sm text-navy-med">1-Hour Evening Study Group + Live Q&amp;A with Instructor</p>
+                            </div>
+                            <button onclick="addToCart('plan-monthly')" class="bg-gold hover:bg-gold-hover text-navy font-extrabold px-5 py-2.5 rounded-full text-xs sm:text-sm shadow-xs transition">
+                                Join Session
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Directory of All 40 Ace Respiratory Live Sessions -->
+                <div class="space-y-6">
+                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                        <div>
+                            <h3 class="text-2xl sm:text-3xl font-extrabold text-navy">Complete Curriculum: 40 Live Review Sessions</h3>
+                            <p class="text-sm text-navy-med">Filter or search all 40 specialized Respiratory Therapy sessions taught at Ace Respiratory.</p>
+                        </div>
+                        <div class="flex flex-wrap items-center gap-3">
+                            <input type="text" id="session-search-input" oninput="renderSessions()" placeholder="Search 40 sessions (e.g. ABG, ARDS, PFT)..."
+                                   class="px-4 py-2.5 rounded-full bg-white border border-ice-border text-sm text-navy focus:outline-none focus:ring-2 focus:ring-gold w-full sm:w-72">
+                        </div>
+                    </div>
+
+                    <div id="sessions-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4"></div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ================================================================= -->
+        <!-- TAB VIEW 5: STUDY TOOLS (11 Tips, Flashcards, Calculator, SMS)    -->
+        <!-- ================================================================= -->
+        <div id="view-Study Tools" class="tab-view hidden flex-grow py-10 px-4 sm:px-6 lg:px-10">
+            <div class="max-w-7xl mx-auto space-y-12">
+
+                <!-- TMC Exam Blueprint & Interactive Equations Flashcards -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+
+                    <!-- Left: Interactive Respiratory Formula Flashcards -->
+                    <div class="lg:col-span-6 bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-100 space-y-5">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <span class="text-xs font-extrabold uppercase tracking-wider text-brand">Interactive Study Deck</span>
+                                <h3 class="text-2xl font-extrabold text-navy">Respiratory Equations Flashcards</h3>
+                            </div>
+                            <span id="flashcard-counter" class="text-xs font-extrabold bg-ice px-3 py-1 rounded-full text-navy">1 / 5</span>
+                        </div>
+
+                        <div onclick="flipFlashcard()" class="perspective-1000 cursor-pointer h-56 w-full select-none">
+                            <div id="flashcard-inner" class="transform-style-3d relative w-full h-full">
+                                <!-- Front -->
+                                <div class="backface-hidden absolute inset-0 bg-navy text-white rounded-2xl p-6 flex flex-col items-center justify-center text-center shadow-md">
+                                    <span class="text-xs uppercase tracking-widest text-gold font-bold mb-2">Equation / Concept (Click to Flip)</span>
+                                    <h4 id="flashcard-front" class="text-2xl font-extrabold">Static Lung Compliance (Cst)</h4>
+                                </div>
+                                <!-- Back -->
+                                <div class="backface-hidden rotate-y-180 absolute inset-0 bg-gold text-navy rounded-2xl p-6 flex flex-col items-center justify-center text-center shadow-md">
+                                    <span class="text-xs uppercase tracking-widest text-navy/80 font-extrabold mb-2">Formula &amp; Normal TMC Value</span>
+                                    <p id="flashcard-back" class="text-lg font-extrabold leading-relaxed">
+                                        VT / (Plateau Pressure - PEEP)<br>Normal: 60 – 100 mL/cmH₂O
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center justify-between pt-2">
+                            <button onclick="prevFlashcard()" class="bg-ice hover:bg-brand-light text-navy font-bold px-5 py-2 rounded-full text-sm transition">&larr; Previous</button>
+                            <button onclick="flipFlashcard()" class="text-xs font-extrabold text-brand hover:underline">Flip Card</button>
+                            <button onclick="nextFlashcard()" class="bg-ice hover:bg-brand-light text-navy font-bold px-5 py-2 rounded-full text-sm transition">Next &rarr;</button>
+                        </div>
+                    </div>
+
+                    <!-- Right: Interactive Bedside Respiratory Calculator -->
+                    <div class="lg:col-span-6 bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-100 space-y-5">
+                        <div>
+                            <span class="text-xs font-extrabold uppercase tracking-wider text-brand">Session #33 &amp; #13 Tool</span>
+                            <h3 class="text-2xl font-extrabold text-navy">PIP / Plateau, Compliance &amp; Raw Calculator</h3>
+                            <p class="text-xs sm:text-sm text-navy-med">Practice calculating Static Compliance (Cst) and Airway Resistance (Raw) for mechanical ventilation questions.</p>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-bold text-navy mb-1">Tidal Volume VT (mL)</label>
+                                <input type="number" id="calc-vt" value="500" oninput="calculateVentMetrics()" class="w-full h-10 px-3 rounded-lg bg-ice-input border border-ice-border font-bold text-navy">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-navy mb-1">Peak Pressure PIP (cmH₂O)</label>
+                                <input type="number" id="calc-pip" value="30" oninput="calculateVentMetrics()" class="w-full h-10 px-3 rounded-lg bg-ice-input border border-ice-border font-bold text-navy">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-navy mb-1">Plateau Pressure Pplat (cmH₂O)</label>
+                                <input type="number" id="calc-plat" value="20" oninput="calculateVentMetrics()" class="w-full h-10 px-3 rounded-lg bg-ice-input border border-ice-border font-bold text-navy">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-navy mb-1">PEEP (cmH₂O)</label>
+                                <input type="number" id="calc-peep" value="5" oninput="calculateVentMetrics()" class="w-full h-10 px-3 rounded-lg bg-ice-input border border-ice-border font-bold text-navy">
+                            </div>
+                        </div>
+
+                        <div class="bg-ice rounded-2xl p-4 grid grid-cols-2 gap-4 border border-ice-border">
+                            <div>
+                                <span class="text-xs font-bold text-navy-med">Static Compliance (Cst)</span>
+                                <p id="res-cst" class="text-xl font-extrabold text-navy">33.3 mL/cmH₂O</p>
+                            </div>
+                            <div>
+                                <span class="text-xs font-bold text-navy-med">Airway Resistance (Raw @ 60 L/min)</span>
+                                <p id="res-raw" class="text-xl font-extrabold text-navy">10.0 cmH₂O/L/sec</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Study Smarter, Not Harder: 11 Study Tips from acerespiratory.com -->
+                <div class="bg-white rounded-3xl p-6 sm:p-10 shadow-sm border border-slate-100 space-y-6">
+                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                        <div>
+                            <div class="brush-badge px-6 py-1 mb-2">
+                                <svg class="brush-bg" viewBox="0 0 300 48" preserveAspectRatio="none"><use href="#yellow-brush"></use></svg>
+                                <span class="text-navy font-extrabold text-xs uppercase tracking-wider">STUDY SMARTER, NOT HARDER</span>
+                            </div>
+                            <h3 class="text-2xl sm:text-3xl font-extrabold text-navy">11 Essential Strategies to Pass the 160-Question, 3-Hour TMC Exam</h3>
+                        </div>
+                        <button onclick="addToCart('plan-sms')" class="bg-gold hover:bg-gold-hover text-navy font-extrabold px-6 py-3 rounded-full text-sm shadow-xs whitespace-nowrap transition">
+                            Get Daily SMS Questions ($10/mo)
+                        </button>
+                    </div>
+
+                    <div id="study-tips-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ================================================================= -->
+        <!-- TAB VIEW 6: ALL PRODUCTS (Memberships, Practice Tests, Quizzes)   -->
+        <!-- ================================================================= -->
+        <div id="view-All Products" class="tab-view hidden flex-grow py-10 px-4 sm:px-6 lg:px-10">
+            <div class="max-w-7xl mx-auto space-y-10">
+
+                <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+                    <div>
+                        <div class="brush-badge px-7 py-1.5 mb-2">
+                            <svg class="brush-bg" viewBox="0 0 300 48" preserveAspectRatio="none"><use href="#yellow-brush"></use></svg>
+                            <span class="text-navy font-extrabold text-sm uppercase tracking-wider">PLANS &amp; PRICING</span>
+                        </div>
+                        <h2 class="text-3xl sm:text-4xl font-extrabold text-navy">All Ace Respiratory Memberships &amp; Study Products</h2>
+                    </div>
+
+                    <!-- Category Filter Buttons -->
+                    <div class="flex flex-wrap gap-2">
+                        <button onclick="filterProducts('all')" class="prod-filter-btn bg-navy text-white font-bold px-4 py-2 rounded-full text-xs sm:text-sm">All Products (9)</button>
+                        <button onclick="filterProducts('membership')" class="prod-filter-btn bg-white text-navy font-bold px-4 py-2 rounded-full text-xs sm:text-sm border border-ice-border">Memberships &amp; SMS</button>
+                        <button onclick="filterProducts('exam')" class="prod-filter-btn bg-white text-navy font-bold px-4 py-2 rounded-full text-xs sm:text-sm border border-ice-border">TMC Practice Tests ($30)</button>
+                        <button onclick="filterProducts('quiz')" class="prod-filter-btn bg-white text-navy font-bold px-4 py-2 rounded-full text-xs sm:text-sm border border-ice-border">Specialty Quizzes ($15)</button>
+                    </div>
+                </div>
+
+                <div id="all-products-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+
+            </div>
+        </div>
+
+        <!-- ================================================================= -->
+        <!-- TAB VIEW 7: FAQ (Accordion + Study Group Terms & Guidelines)      -->
+        <!-- ================================================================= -->
+        <div id="view-FAQ" class="tab-view hidden flex-grow py-10 px-4 sm:px-6 lg:px-10">
+            <div class="max-w-4xl mx-auto space-y-8">
+
+                <div class="text-center space-y-3">
+                    <div class="brush-badge px-7 py-1.5">
+                        <svg class="brush-bg" viewBox="0 0 300 48" preserveAspectRatio="none"><use href="#yellow-brush"></use></svg>
+                        <span class="text-navy font-extrabold text-sm uppercase tracking-wider">FREQUENTLY ASKED QUESTIONS</span>
+                    </div>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-navy">Everything You Need to Know About Ace Respiratory</h2>
+                </div>
+
+                <div id="faq-accordion-container" class="space-y-4"></div>
+
+            </div>
+        </div>
+
+    </main>
+
+    <!-- ===================================================================== -->
+    <!-- FOOTER (Exact Match to Screenshot + Official Social Media URLs)       -->
+    <!-- ===================================================================== -->
+    <footer class="bg-white border-t border-slate-200 py-5 px-4 sm:px-6 lg:px-10">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+
+            <!-- Left: Logo + Ace Respiratory -->
+            <a href="javascript:void(0)" onclick="switchTab('Contact')" class="flex items-center gap-3 focus:outline-none">
+                <svg class="w-11 h-11 flex-shrink-0" viewBox="0 0 100 100">
+                    <use href="#ace-logo-mark"></use>
+                </svg>
+                <span class="text-xl font-extrabold text-navy tracking-tight">
+                    Ace Respiratory
+                </span>
+            </a>
+
+            <!-- Center: Globe Icon + Acerespiratory.com -->
+            <a href="https://www.acerespiratory.com/" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2.5 text-navy hover:text-brand transition font-semibold text-base">
+                <svg class="w-6 h-6 text-navy" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="9" />
+                    <path d="M3.6 9h16.8M3.6 15h16.8" />
+                    <path d="M11.5 3a17 17 0 0 0 0 18M12.5 3a17 17 0 0 1 0 18" />
+                </svg>
+                <span>Acerespiratory.com</span>
+            </a>
+
+            <!-- Right: Vertical Divider + 5 Official Social Icons -->
+            <div class="flex items-center gap-6">
+                <div class="hidden md:block h-8 w-px bg-slate-300"></div>
+                <div class="flex items-center gap-2.5">
+                    <!-- Facebook -->
+                    <a href="https://www.facebook.com/share/g/1A2RTKmPBS/" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="w-9 h-9 rounded-full bg-[#1877F2] text-white flex items-center justify-center hover:opacity-90 transition">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M15.12 5.32H17V2.14A26.11 26.11 0 0 0 14.26 2c-2.72 0-4.58 1.66-4.58 4.7v2.62H6.61v3.56h3.07V22h3.68v-9.12h3.06l.46-3.56h-3.52V6.65c0-1.05.29-1.73 1.76-1.73Z"/>
+                        </svg>
+                    </a>
+                    <!-- TikTok -->
+                    <a href="https://www.tiktok.com/@acerespiratory" target="_blank" rel="noopener noreferrer" aria-label="TikTok" class="w-9 h-9 rounded-full bg-black text-white flex items-center justify-center hover:opacity-90 transition">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M16.6 5.82s.51.5 0 0A4.278 4.278 0 0 1 15.54 3h-3.09v12.4a2.592 2.592 0 0 1-2.59 2.5c-1.42 0-2.6-1.16-2.6-2.6 0-1.72 1.66-3.01 3.37-2.48V9.66c-3.45-.46-6.47 2.22-6.47 5.64 0 3.33 2.76 5.7 5.69 5.7 3.14 0 5.69-2.55 5.69-5.7V9.01a7.35 7.35 0 0 0 4.3 1.38V7.3s-1.88.09-3.24-1.48z"/>
+                        </svg>
+                    </a>
+                    <!-- Instagram -->
+                    <a href="https://www.instagram.com/acerespiratory" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="w-9 h-9 rounded-full ig-gradient text-white flex items-center justify-center hover:opacity-90 transition">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+                            <rect x="3" y="3" width="18" height="18" rx="5" />
+                            <circle cx="12" cy="12" r="4" />
+                            <circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none" />
+                        </svg>
+                    </a>
+                    <!-- Pinterest -->
+                    <a href="https://in.pinterest.com/acerespiratory/" target="_blank" rel="noopener noreferrer" aria-label="Pinterest" class="w-9 h-9 rounded-full bg-[#E60023] text-white flex items-center justify-center hover:opacity-90 transition">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12.017 2C6.486 2 2 6.486 2 12.017c0 4.242 2.636 7.868 6.359 9.336-.088-.792-.167-2.007.035-2.872.182-.78 1.172-4.968 1.172-4.968s-.299-.599-.299-1.484c0-1.39.806-2.428 1.809-2.428.853 0 1.265.64 1.265 1.408 0 .858-.546 2.141-.828 3.33-.236.995.499 1.806 1.48 1.806 1.777 0 3.143-1.873 3.143-4.577 0-2.393-1.72-4.066-4.176-4.066-2.845 0-4.515 2.134-4.515 4.34 0 .859.331 1.781.744 2.281.082.099.094.186.069.287-.076.315-.245.995-.278 1.134-.044.183-.145.222-.335.134-1.249-.581-2.03-2.407-2.03-3.874 0-3.154 2.292-6.052 6.608-6.052 3.469 0 6.165 2.472 6.165 5.776 0 3.447-2.173 6.22-5.19 6.22-1.013 0-1.966-.527-2.292-1.148l-.623 2.378c-.226.869-.835 1.958-1.244 2.621.937.29 1.931.446 2.962.446 5.531 0 10.017-4.486 10.017-10.017C22.034 6.486 17.548 2 12.017 2z"/>
+                        </svg>
+                    </a>
+                    <!-- YouTube -->
+                    <a href="https://www.youtube.com/@acerespiratory" target="_blank" rel="noopener noreferrer" aria-label="YouTube" class="w-9 h-9 rounded-full bg-[#FF0000] text-white flex items-center justify-center hover:opacity-90 transition">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M21.58 7.19c-.23-.86-.91-1.54-1.77-1.77C18.25 5 12 5 12 5s-6.25 0-7.81.42c-.86.23-1.54.91-1.77 1.77C2 8.75 2 12 2 12s0 3.25.42 4.81c.23.86.91 1.54 1.77 1.77C5.75 19 12 19 12 19s6.25 0 7.81-.42c.86-.23 1.54-.91 1.77-1.77C22 15.25 22 12 22 12s0-3.25-.42-4.81zM10 15V9l5.2 3-5.2 3z"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </footer>
+
+    <!-- ===================================================================== -->
+    <!-- REQUIREMENT 3: FLOATING BUTTON & POP-UP MODAL ("Get Ready for 2027 RTE") -->
+    <!-- ===================================================================== -->
+    <button onclick="openRteModal()"
+            aria-label="Get Ready for 2027 RTE"
+            class="fixed bottom-5 right-5 z-40 flex items-center gap-2.5 bg-gold hover:bg-gold-hover text-navy font-extrabold px-5 py-3 rounded-full shadow-xl border-2 border-navy transition transform hover:-translate-y-0.5 active:scale-95">
+        <span class="w-2.5 h-2.5 rounded-full bg-navy animate-ping"></span>
+        <span class="text-sm sm:text-base">Get Ready for 2027 RTE</span>
+    </button>
+
+    <!-- 2027 RTE Modal Dialog -->
+    <div id="rte-modal"
+         role="dialog"
+         aria-modal="true"
+         aria-labelledby="rte-modal-title"
+         class="fixed inset-0 z-50 hidden flex items-center justify-center bg-navy/60 backdrop-blur-xs p-4">
+        <div class="bg-white rounded-3xl max-w-lg w-full p-7 sm:p-9 shadow-2xl border-t-8 border-gold relative animate-modal">
+            <!-- Clearly Visible Top-Right Close Button -->
+            <button onclick="closeRteModal()"
+                    aria-label="Close Pop-up"
+                    class="absolute top-4 right-4 w-10 h-10 rounded-full bg-ice hover:bg-gold text-navy font-extrabold flex items-center justify-center text-xl transition focus:outline-none">
+                &times;
+            </button>
+
+            <div class="flex flex-col items-start gap-3 mb-5 pr-8">
+                <div class="flex items-center gap-3">
+                    <svg class="w-12 h-12 flex-shrink-0" viewBox="0 0 100 100">
+                        <use href="#ace-logo-mark"></use>
+                    </svg>
+                    <span class="text-xs font-extrabold uppercase tracking-widest text-brand bg-ice px-3 py-1 rounded-full">
+                        2027 Exam Announcement
+                    </span>
+                </div>
+
+                <div class="brush-badge px-6 py-1.5 mt-1">
+                    <svg class="brush-bg" viewBox="0 0 300 48" preserveAspectRatio="none">
+                        <use href="#yellow-brush"></use>
+                    </svg>
+                    <h3 id="rte-modal-title" class="text-xl sm:text-2xl font-extrabold text-navy">
+                        Get Ready for 2027 RTE
+                    </h3>
+                </div>
+            </div>
+
+            <!-- Exact Required Pop-up Text -->
+            <p class="text-navy text-base sm:text-lg leading-relaxed font-semibold bg-ice p-5 rounded-2xl border border-ice-border mb-7">
+                “Ace Respiratory is preparing new study resources to help you get ready for the 2027 Respiratory Therapy Examination. More details are coming soon!”
+            </p>
+
+            <div class="flex justify-end">
+                <button onclick="closeRteModal()"
+                        class="w-full sm:w-auto bg-navy hover:bg-navy-med text-white font-extrabold px-8 py-3 rounded-full shadow-md transition">
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===================================================================== -->
+    <!-- INTERACTIVE SEARCH MODAL                                              -->
+    <!-- ===================================================================== -->
+    <div id="search-modal" class="fixed inset-0 z-50 hidden flex items-start justify-center bg-navy/60 backdrop-blur-xs p-4 pt-16">
+        <div class="bg-white rounded-3xl max-w-2xl w-full p-6 sm:p-8 shadow-2xl relative animate-modal">
+            <div class="flex items-center justify-between border-b border-slate-100 pb-4 mb-4">
+                <h3 class="text-xl font-extrabold text-navy">Search Ace Respiratory</h3>
+                <button onclick="closeSearchModal()" class="w-9 h-9 rounded-full bg-ice hover:bg-gold text-navy font-extrabold text-lg">&times;</button>
+            </div>
+            <input type="text" id="global-search-input" oninput="runGlobalSearch()" placeholder="Search 40 live sessions, practice tests, or study plans..."
+                   class="w-full h-12 px-4 rounded-xl bg-ice-input border border-ice-border text-navy font-semibold focus:outline-none focus:ring-2 focus:ring-gold mb-4">
+            <div id="global-search-results" class="max-h-80 overflow-y-auto space-y-2"></div>
+        </div>
+    </div>
+
+    <!-- ===================================================================== -->
+    <!-- 3-STEP MEMBERSHIP REGISTRATION MODAL                                  -->
+    <!-- ===================================================================== -->
+    <div id="account-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center bg-navy/60 backdrop-blur-xs p-4">
+        <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl relative animate-modal">
+            <button onclick="closeAccountModal()" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-ice hover:bg-gold text-navy font-extrabold text-lg">&times;</button>
+            <div class="space-y-4">
+                <div class="brush-badge px-6 py-1">
+                    <svg class="brush-bg" viewBox="0 0 300 48" preserveAspectRatio="none"><use href="#yellow-brush"></use></svg>
+                    <span class="text-navy font-extrabold text-xs uppercase">MEMBER REGISTRATION</span>
+                </div>
+                <h3 class="text-2xl font-extrabold text-navy">Join Ace Respiratory Study Group</h3>
+                <p class="text-xs sm:text-sm text-navy-med">Step 1: Complete your registration details below to receive your Zoom study group link.</p>
+
+                <form onsubmit="handleRegistrationSubmit(event)" class="space-y-3">
+                    <div>
+                        <label class="block text-xs font-bold text-navy mb-1">Full Name</label>
+                        <input type="text" required placeholder="e.g., Jordan Taylor, RRT" class="w-full h-11 px-3.5 rounded-lg bg-ice-input border border-ice-border text-sm font-semibold">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-navy mb-1">Email Address</label>
+                        <input type="email" required placeholder="you@example.com" class="w-full h-11 px-3.5 rounded-lg bg-ice-input border border-ice-border text-sm font-semibold">
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <div>
+                            <label class="block text-xs font-bold text-navy mb-1">Preferred Plan</label>
+                            <select id="reg-plan-select" class="w-full h-11 px-3 rounded-lg bg-ice-input border border-ice-border text-sm font-bold text-navy">
+                                <option value="plan-monthly">Monthly Membership ($25/mo)</option>
+                                <option value="plan-weekly">Weekly Membership ($7.54/wk)</option>
+                                <option value="plan-sms">Daily SMS Questions ($10/mo)</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-navy mb-1">Preferred Time Zone</label>
+                            <select class="w-full h-11 px-3 rounded-lg bg-ice-input border border-ice-border text-sm font-bold text-navy">
+                                <option>Mountain (12 PM / 6 PM)</option>
+                                <option>Pacific (1 PM / 7 PM)</option>
+                                <option>Central (2 PM / 8 PM)</option>
+                                <option>Eastern (3 PM / 9 PM)</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button type="submit" class="w-full bg-gold hover:bg-gold-hover text-navy font-extrabold py-3.5 rounded-full shadow-sm transition mt-2">
+                        Complete Step 1 &amp; Add Plan to Cart &rarr;
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===================================================================== -->
+    <!-- SLIDE-OUT SHOPPING CART DRAWER                                        -->
+    <!-- ===================================================================== -->
+    <div id="cart-drawer-backdrop" onclick="toggleCartDrawer(false)" class="fixed inset-0 z-50 hidden bg-navy/50 backdrop-blur-xs"></div>
+    <aside id="cart-drawer" class="fixed top-0 right-0 bottom-0 w-full max-w-md bg-white z-50 shadow-2xl transform translate-x-full transition-transform duration-300 flex flex-col">
+        <div class="p-6 border-b border-slate-100 flex items-center justify-between">
+            <div class="flex items-center gap-2.5">
+                <span class="text-xl font-extrabold text-navy">Your Study Cart</span>
+                <span id="drawer-cart-count" class="bg-gold text-navy text-xs font-extrabold px-2.5 py-0.5 rounded-full">0</span>
+            </div>
+            <button onclick="toggleCartDrawer(false)" class="w-9 h-9 rounded-full bg-ice hover:bg-gold text-navy font-extrabold text-lg">&times;</button>
+        </div>
+
+        <div id="cart-items-container" class="flex-grow overflow-y-auto p-6 space-y-4"></div>
+
+        <div class="p-6 border-t border-slate-100 bg-ice/60 space-y-4">
+            <div class="flex items-center justify-between text-lg font-extrabold text-navy">
+                <span>Total</span>
+                <span id="cart-total-price">$0.00</span>
+            </div>
+            <button onclick="handleCheckout()" class="w-full bg-gold hover:bg-gold-hover text-navy font-extrabold py-3.5 rounded-full shadow-md transition">
+                Proceed to Enrollment Checkout &rarr;
+            </button>
+            <div id="checkout-feedback" class="hidden text-xs font-bold text-emerald-700 bg-emerald-50 border border-emerald-200 p-3 rounded-xl text-center">
+                ✓ Order confirmed! Check your email (or contact acerespiratory@gmail.com) for your study link.
+            </div>
+        </div>
+    </aside>
+
+    <!-- ===================================================================== -->
+    <!-- APPLICATION DATA & INTERACTIVE JAVASCRIPT                             -->
+    <!-- ===================================================================== -->
+    <script>
+        /* -------------------------------------------------------------------
+           1. REAL CATALOG DATA FROM ACERESPIRATORY.COM/PLANS
+           ------------------------------------------------------------------- */
+        const PRODUCTS = [
+            {
+                id: 'plan-monthly',
+                category: 'membership',
+                badge: 'Most Popular Plan',
+                title: 'Monthly Membership',
+                price: 25.00,
+                billing: 'Every month',
+                features: [
+                    'Live Sessions [3x/week]',
+                    '1 TMC Style Practice Test [2x/month]',
+                    'Live Q&A Session',
+                    'All Study Material Included'
+                ]
+            },
+            {
+                id: 'plan-weekly',
+                category: 'membership',
+                badge: 'Flexible Weekly',
+                title: 'Weekly Membership',
+                price: 7.54,
+                billing: 'Every week',
+                features: [
+                    'Live Sessions [3x for 1 week]',
+                    'Acquire proficiency in testing',
+                    'Interactive Zoom study group access'
+                ]
+            },
+            {
+                id: 'plan-sms',
+                category: 'membership',
+                badge: 'Daily Mobile Prep',
+                title: 'Daily SMS Questions',
+                price: 10.00,
+                billing: 'Every month',
+                features: [
+                    'One Nationwide Respiratory Exam Style question daily',
+                    'Delivered directly to your phone via SMS',
+                    'High-yield TMC exam rationales'
+                ]
+            },
+            {
+                id: 'exam-tmc-1',
+                category: 'exam',
+                badge: 'Full-Length Exam',
+                title: 'TMC Practice Test 1',
+                price: 30.00,
+                billing: 'One-time purchase',
+                features: [
+                    '160 NBRC-style multiple-choice questions',
+                    '3-hour timed computer simulation',
+                    'Detailed High Cut Score rationale breakdown'
+                ]
+            },
+            {
+                id: 'exam-tmc-2',
+                category: 'exam',
+                badge: 'Full-Length Exam',
+                title: 'TMC Practice Test 2',
+                price: 30.00,
+                billing: 'One-time purchase',
+                features: [
+                    '160 NBRC-style multiple-choice questions',
+                    'Covers Patient Data, Equipment & Therapeutic Procedures',
+                    'Detailed answer rationales'
+                ]
+            },
+            {
+                id: 'exam-tmc-3',
+                category: 'exam',
+                badge: 'Full-Length Exam',
+                title: 'TMC Practice Test 3',
+                price: 30.00,
+                billing: 'One-time purchase',
+                features: [
+                    '160 NBRC-style multiple-choice questions',
+                    'Simulate test-day pacing and scratch paper strategy',
+                    'Instant diagnostic score report'
+                ]
+            },
+            {
+                id: 'quiz-mv',
+                category: 'quiz',
+                badge: 'Topic Quiz',
+                title: 'Mechanical Ventilation Quiz',
+                price: 15.00,
+                billing: 'One-time purchase',
+                features: [
+                    'Focused ventilator modes, waveforms & ABG adjustments',
+                    'PIP, Plateau Pressure & Raw troubleshooting',
+                    'Instant rationales'
+                ]
+            },
+            {
+                id: 'quiz-pft',
+                category: 'quiz',
+                badge: 'Topic Quiz',
+                title: 'PFT Quiz',
+                price: 15.00,
+                billing: 'One-time purchase',
+                features: [
+                    'Pulmonary Function Testing (FEV1, FVC, FEV1/FVC%)',
+                    'Obstructive vs. Restrictive loops & graphs',
+                    'Instant rationales'
+                ]
+            },
+            {
+                id: 'quiz-cxr',
+                category: 'quiz',
+                badge: 'Topic Quiz',
+                title: 'Chest X-Ray Quiz',
+                price: 15.00,
+                billing: 'One-time purchase',
+                features: [
+                    'Radiographic identification of pneumothorax, ARDS, CHF',
+                    'ET tube & vascular line placement verification',
+                    'Instant rationales'
+                ]
+            }
+        ];
+
+        /* -------------------------------------------------------------------
+           2. ALL 40 LIVE REVIEW SESSIONS FROM ACERESPIRATORY.COM
+           ------------------------------------------------------------------- */
+        const SESSIONS_40 = [
+            { num: 1, title: 'Respiratory ABG', topic: 'Diagnostics' },
+            { num: 2, title: 'Diseases on TMC (Part 1)', topic: 'Pathology' },
+            { num: 3, title: 'Diseases on TMC (Part 2)', topic: 'Pathology' },
+            { num: 4, title: 'Patient Assessment (Part 1)', topic: 'Assessment' },
+            { num: 5, title: 'Patient Assessment (Part 2)', topic: 'Assessment' },
+            { num: 6, title: 'BiPAP / NIPPV', topic: 'Ventilation' },
+            { num: 7, title: 'Mechanical Waveforms', topic: 'Ventilation' },
+            { num: 8, title: 'Loops & Graphs', topic: 'Ventilation' },
+            { num: 9, title: 'Hemodynamics (Part 1)', topic: 'Critical Care' },
+            { num: 10, title: 'Hemodynamics (Part 2)', topic: 'Critical Care' },
+            { num: 11, title: 'Pulmonary Function Testing (PFT)', topic: 'Diagnostics' },
+            { num: 12, title: 'Chest X-Ray Interpretation', topic: 'Diagnostics' },
+            { num: 13, title: 'Respiratory Equations (Part 1)', topic: 'Calculations' },
+            { num: 14, title: 'Respiratory Equations (Part 2)', topic: 'Calculations' },
+            { num: 15, title: 'Airway Clearance Therapies', topic: 'Therapeutics' },
+            { num: 16, title: 'EKG Interpretation (Part 1)', topic: 'Diagnostics' },
+            { num: 17, title: 'EKG Interpretation (Part 2)', topic: 'Diagnostics' },
+            { num: 18, title: 'Quality Control & Calibration', topic: 'Equipment' },
+            { num: 19, title: 'I:E Ratio / Seconds / %', topic: 'Calculations' },
+            { num: 20, title: 'Neonate & Pediatric Care (Part 1)', topic: 'Neonatal/Peds' },
+            { num: 21, title: 'Neonate & Pediatric Care (Part 2)', topic: 'Neonatal/Peds' },
+            { num: 22, title: 'Neonate & Pediatric Care (Part 3)', topic: 'Neonatal/Peds' },
+            { num: 23, title: 'Intubation & Artificial Airways (Part 1)', topic: 'Airway' },
+            { num: 24, title: 'Intubation & Artificial Airways (Part 2)', topic: 'Airway' },
+            { num: 25, title: 'PPE & Infection Control', topic: 'Safety' },
+            { num: 26, title: 'Clean / Disinfect / Sterile (Part 1)', topic: 'Equipment' },
+            { num: 27, title: 'Clean / Disinfect / Sterile (Part 2)', topic: 'Equipment' },
+            { num: 28, title: 'Cystic Fibrosis Management', topic: 'Pathology' },
+            { num: 29, title: 'PIP / Plat & Raw Calculations', topic: 'Ventilation' },
+            { num: 30, title: 'Suctioning & Catheter Sizing', topic: 'Airway' },
+            { num: 31, title: 'Mechanical Ventilation (Part 1)', topic: 'Ventilation' },
+            { num: 32, title: 'Mechanical Ventilation (Part 2)', topic: 'Ventilation' },
+            { num: 33, title: 'Mechanical Ventilation (Part 3)', topic: 'Ventilation' },
+            { num: 34, title: 'Body Positions & Oxygenation', topic: 'Therapeutics' },
+            { num: 35, title: 'Capnography (PetCO2 Waveforms)', topic: 'Diagnostics' },
+            { num: 36, title: 'Test-Taking Technique for TMC', topic: 'Strategy' },
+            { num: 37, title: 'Equipment Function (Part 1)', topic: 'Equipment' },
+            { num: 38, title: 'Equipment Function (Part 2)', topic: 'Equipment' },
+            { num: 39, title: 'Equipment Troubleshooting', topic: 'Equipment' },
+            { num: 40, title: 'ARDS Protocol & Lung Protection', topic: 'Critical Care' }
+        ];
+
+        /* -------------------------------------------------------------------
+           3. 11 STUDY STRATEGIES FROM ACERESPIRATORY.COM/STUDY-TOOLS
+           ------------------------------------------------------------------- */
+        const STUDY_TIPS = [
+            { num: 1, title: "Don't Study Alone", desc: "Join our 1-hour live online study group sessions to stay accountable and learn alongside peers." },
+            { num: 2, title: "Practice with TMC-Style Exams", desc: "Simulate the real 160-question NBRC exam so question phrasing feels natural on test day." },
+            { num: 3, title: "Time Yourself", desc: "Train within the 3-hour exam window to build confidence and prevent rushing at the end." },
+            { num: 4, title: "Master Test-Taking Strategy", desc: "Learn how to eliminate distractors and recognize NBRC hospital rules vs. real-world habits." },
+            { num: 5, title: "Scratch Paper Strategy", desc: "Write down your high-yield equations, normal ABG/hemodynamic values, and vent rules first." },
+            { num: 6, title: "Carefully Read Each Question", desc: "Identify age (neonate vs. adult), clinical setting, and whether an emergency action is required." },
+            { num: 7, title: "Prioritize High-Yield Topics", desc: "Focus heavily on Mechanical Ventilation, Patient Assessment, ABGs, PFTs, and Disease Processes." },
+            { num: 8, title: "Avoid Last-Minute Cramming", desc: "Space out your review across our 40 structured sessions for long-term clinical retention." },
+            { num: 9, title: "Take Scheduled Breaks", desc: "Keep your mind sharp with structured study blocks followed by short recovery breaks." },
+            { num: 10, title: "Minimize Distractions", desc: "Dedicate a quiet workspace during live review sessions and timed practice tests." },
+            { num: 11, title: "Control Test Anxiety & Keep Clean Notes", desc: "Organized notes and repeated exam simulation turn test-day nerves into High Cut Score confidence." }
+        ];
+
+        /* -------------------------------------------------------------------
+           4. SAMPLE TMC PRACTICE QUIZ QUESTIONS
+           ------------------------------------------------------------------- */
+        const SAMPLE_QUIZ = [
+            {
+                id: 0,
+                question: "1. A 68-kg (150-lb) patient receiving VC-CMV has a set VT of 500 mL, PEEP of 5 cmH₂O, Peak Inspiratory Pressure (PIP) of 38 cmH₂O, and Plateau Pressure (Pplat) of 22 cmH₂O. What is the patient's Static Lung Compliance (Cst)?",
+                options: [
+                    "15 mL/cmH₂O",
+                    "29 mL/cmH₂O",
+                    "31 mL/cmH₂O",
+                    "38 mL/cmH₂O"
+                ],
+                correct: 1,
+                rationale: "Static Compliance (Cst) = VT / (Pplat - PEEP) = 500 / (22 - 5) = 500 / 17 ≈ 29.4 mL/cmH₂O. Because PIP is elevated while Pplat is 22, airway resistance (Raw) is also increased."
+            },
+            {
+                id: 1,
+                question: "2. An adult patient in the ICU has the following arterial blood gas results on 40% FiO₂: pH 7.26, PaCO₂ 58 torr, PaO₂ 64 torr, HCO₃⁻ 25 mEq/L. How should the respiratory therapist interpret this ABG?",
+                options: [
+                    "Uncompensated respiratory acidosis with mild hypoxemia",
+                    "Partially compensated metabolic acidosis",
+                    "Acute alveolar hyperventilation",
+                    "Fully compensated respiratory acidosis"
+                ],
+                correct: 0,
+                rationale: "pH < 7.35 indicates acidemia, PaCO₂ > 45 torr confirms a primary respiratory acidosis, HCO₃⁻ is normal (22–26 mEq/L) showing no renal compensation yet, and PaO₂ of 64 torr (60–79 torr) indicates mild hypoxemia."
+            },
+            {
+                id: 2,
+                question: "3. Which pulmonary function test (PFT) measurement is the most sensitive indicator of obstructive airway disease (such as asthma or COPD)?",
+                options: [
+                    "Total Lung Capacity (TLC)",
+                    "FEV₁ / FVC % ratio < 70%",
+                    "Diffusing Capacity (DLCO)",
+                    "Slow Vital Capacity (SVC)"
+                ],
+                correct: 1,
+                rationale: "A decreased FEV₁/FVC ratio (< 70%) is the hallmark diagnostic criterion for obstructive lung disease on the TMC exam."
+            }
+        ];
+
+        /* -------------------------------------------------------------------
+           5. FLASHCARDS & FAQ DATA
+           ------------------------------------------------------------------- */
+        const FLASHCARDS = [
+            { front: "Static Lung Compliance (Cst)", back: "Formula: VT / (Plateau Pressure - PEEP)\nNormal Value: 60 – 100 mL/cmH₂O (Intubated: 40–60)" },
+            { front: "Airway Resistance (Raw)", back: "Formula: (PIP - Plateau Pressure) / Flow (L/sec)\nNormal Value: 0.5 – 2.5 cmH₂O/L/sec" },
+            { front: "Minute Ventilation (VE)", back: "Formula: Tidal Volume (VT) × Respiratory Rate (f)\nNormal Value: 5 – 10 L/min" },
+            { front: "Ideal Body Weight (IBW)", back: "Male: 50 kg + 2.3 × (Height in inches - 60)\nFemale: 45.5 kg + 2.3 × (Height in inches - 60)" },
+            { front: "Arterial Oxygen Content (CaO₂)", back: "Formula: (Hb × 1.34 × SaO₂) + (PaO₂ × 0.003)\nNormal Value: 16 – 20 vol% (mL/dL)" }
+        ];
+
+        const FAQS = [
+            {
+                q: "What is the goal of Ace Respiratory?",
+                a: "Our mission is to empower Respiratory Therapists with the wisdom to pass the NBRC TMC exam with a High Cut Score (qualifying you for the Clinical Simulation Exam) through 1-hour live online study group sessions, full-length practice exams, and structured topic quizzes."
+            },
+            {
+                q: "What is included in the $25/Month Membership Plan?",
+                a: "The Monthly Membership ($25/month) includes Live 1-Hour Study Group Sessions 3x/week, 1 Full TMC-Style Practice Test 2x/month, Live Q&A sessions with the instructor, and access to all study materials across our 40 respiratory modules."
+            },
+            {
+                q: "What times are the 1-Hour Live Online Study Group Sessions held?",
+                a: "Live sessions are held twice daily: Mountain Time (12:00 PM Noon & 6:00 PM), Pacific Time (1:00 PM & 7:00 PM), Central Time (2:00 PM & 8:00 PM), and Eastern Time (3:00 PM & 9:00 PM)."
+            },
+            {
+                q: "What is the 2027 RTE update?",
+                a: "Ace Respiratory is preparing new study resources to help you get ready for the 2027 Respiratory Therapy Examination. Click the 'Get Ready for 2027 RTE' banner at any time for announcements."
+            },
+            {
+                q: "What are the Study Group Guidelines and Terms?",
+                a: "To maintain a focused learning environment, members agree to treat peers respectfully during live Zoom sessions, avoid sharing proprietary test questions or personal login links, and actively participate in clinical discussions."
+            }
+        ];
+
+        /* -------------------------------------------------------------------
+           6. STATE MANAGEMENT & RENDER FUNCTIONS
+           ------------------------------------------------------------------- */
+        let cart = [];
+        let currentFlashcardIndex = 0;
+        let showLivePreviewBelowComingSoon = true;
+
+        function initApp() {
+            renderPracticeExamsTab();
+            renderAllProducts('all');
+            renderSessions();
+            renderStudyTips();
+            renderSampleQuiz();
+            renderFaqs();
+            updateCartUI();
+            calculateVentMetrics();
+        }
+
+        /* Tab Switching Logic (Requirement 2 + Dynamic Multi-View) */
+        function switchTab(tabName) {
+            // Update active underline on desktop navigation
+            document.querySelectorAll('.nav-tab').forEach(btn => {
+                btn.classList.toggle('active', btn.getAttribute('data-nav') === tabName);
+            });
+
+            // Hide all tab views
+            document.querySelectorAll('.tab-view').forEach(view => {
+                view.classList.add('hidden');
+            });
+
+            const comingSoonBanner = document.getElementById('coming-soon-banner-wrapper');
+            const activeTabLabel = document.getElementById('coming-soon-active-tab-name');
+            const targetView = document.getElementById('view-' + tabName);
+
+            if (tabName === 'Contact') {
+                comingSoonBanner.classList.add('hidden');
+                targetView.classList.remove('hidden');
+            } else {
+                // Requirement 2: Show the "Coming Soon" card when clicking any tab
+                activeTabLabel.textContent = tabName;
+                comingSoonBanner.classList.remove('hidden');
+                if (showLivePreviewBelowComingSoon && targetView) {
+                    targetView.classList.remove('hidden');
+                }
+            }
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function toggleDynamicPreviewMode() {
+            showLivePreviewBelowComingSoon = !showLivePreviewBelowComingSoon;
+            const btn = document.getElementById('toggle-preview-btn');
+            const currentTab = document.getElementById('coming-soon-active-tab-name').textContent;
+            const targetView = document.getElementById('view-' + currentTab);
+
+            if (showLivePreviewBelowComingSoon) {
+                btn.textContent = 'Hide Live Preview Below';
+                if (targetView) targetView.classList.remove('hidden');
+            } else {
+                btn.textContent = 'Show Full ' + currentTab + ' Live Preview Below';
+                if (targetView) targetView.classList.add('hidden');
+            }
+        }
+
+        /* Render Practice Exams & Quizzes */
+        function renderPracticeExamsTab() {
+            const container = document.getElementById('practice-exams-grid');
+            const examItems = PRODUCTS.filter(p => p.category === 'exam' || p.category === 'quiz');
+            container.innerHTML = examItems.map(item => createProductCardHTML(item)).join('');
+        }
+
+        /* Render All Products Store */
+        function renderAllProducts(categoryFilter) {
+            const container = document.getElementById('all-products-grid');
+            const filtered = categoryFilter === 'all'
+                ? PRODUCTS
+                : PRODUCTS.filter(p => p.category === categoryFilter);
+            container.innerHTML = filtered.map(item => createProductCardHTML(item)).join('');
+        }
+
+        function filterProducts(cat) {
+            renderAllProducts(cat);
+        }
+
+        function createProductCardHTML(item) {
+            return `
+                <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 flex flex-col justify-between hover:shadow-md transition">
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-extrabold uppercase tracking-wider bg-ice text-brand px-3 py-1 rounded-full">${item.badge}</span>
+                            <span class="text-xs font-bold text-navy-med">${item.billing}</span>
+                        </div>
+                        <h4 class="text-xl font-extrabold text-navy">${item.title}</h4>
+                        <div class="text-3xl font-extrabold text-navy">$${item.price.toFixed(2)}</div>
+                        <ul class="space-y-2 pt-2 text-sm text-navy-med">
+                            ${item.features.map(f => `<li class="flex items-start gap-2"><span class="text-gold font-extrabold">✓</span><span>${f}</span></li>`).join('')}
+                        </ul>
+                    </div>
+                    <button onclick="addToCart('${item.id}')" class="mt-6 w-full bg-gold hover:bg-gold-hover text-navy font-extrabold py-3 rounded-full shadow-xs transition">
+                        Add to Study Cart +
+                    </button>
+                </div>
+            `;
+        }
+
+        /* Render 40 Sessions Directory */
+        function renderSessions() {
+            const query = (document.getElementById('session-search-input')?.value || '').toLowerCase();
+            const container = document.getElementById('sessions-grid');
+            const filtered = SESSIONS_40.filter(s =>
+                s.title.toLowerCase().includes(query) ||
+                s.topic.toLowerCase().includes(query) ||
+                String(s.num).includes(query)
+            );
+
+            container.innerHTML = filtered.map(s => `
+                <div class="bg-white rounded-2xl p-4 shadow-xs border border-slate-100 flex flex-col justify-between hover:border-gold transition">
+                    <div>
+                        <div class="flex items-center justify-between text-xs font-extrabold mb-1.5">
+                            <span class="bg-navy text-white px-2.5 py-0.5 rounded-full">Session #${s.num}</span>
+                            <span class="text-brand">${s.topic}</span>
+                        </div>
+                        <h4 class="font-extrabold text-navy text-base">${s.title}</h4>
+                    </div>
+                    <button onclick="addToCart('plan-monthly')" class="mt-3 text-xs font-extrabold text-brand hover:underline text-left">
+                        Join Live Session &rarr;
+                    </button>
+                </div>
+            `).join('');
+        }
+
+        /* Time Zone Switcher for Live Review Schedule */
+        function setTimezone(tz) {
+            const map = {
+                MST: { day: '12:00 PM Noon (MST)', eve: '6:00 PM (MST)' },
+                PST: { day: '1:00 PM (PST)', eve: '7:00 PM (PST)' },
+                CST: { day: '2:00 PM (CST)', eve: '8:00 PM (CST)' },
+                EST: { day: '3:00 PM (EST)', eve: '9:00 PM (EST)' }
+            };
+            document.getElementById('schedule-day-time').textContent = map[tz].day;
+            document.getElementById('schedule-evening-time').textContent = map[tz].eve;
+
+            document.querySelectorAll('.tz-btn').forEach(btn => {
+                btn.className = 'tz-btn bg-ice text-navy font-bold px-4 py-2 rounded-full text-xs sm:text-sm hover:bg-brand-light transition';
+            });
+            document.getElementById('tz-' + tz).className = 'tz-btn bg-navy text-white font-bold px-4 py-2 rounded-full text-xs sm:text-sm transition';
+        }
+
+        /* Render 11 Study Tips */
+        function renderStudyTips() {
+            const container = document.getElementById('study-tips-grid');
+            container.innerHTML = STUDY_TIPS.map(tip => `
+                <div class="bg-ice/70 rounded-2xl p-5 border border-ice-border space-y-1.5">
+                    <div class="flex items-center gap-2.5">
+                        <span class="w-7 h-7 rounded-full bg-gold text-navy font-extrabold text-xs flex items-center justify-center">${tip.num}</span>
+                        <h4 class="font-extrabold text-navy text-base">${tip.title}</h4>
+                    </div>
+                    <p class="text-xs sm:text-sm text-navy-med leading-relaxed">${tip.desc}</p>
+                </div>
+            `).join('');
+        }
+
+        /* Interactive Sample Quiz */
+        function renderSampleQuiz() {
+            const container = document.getElementById('sample-quiz-container');
+            container.innerHTML = SAMPLE_QUIZ.map((q, qIdx) => `
+                <div class="bg-ice/60 rounded-2xl p-5 border border-ice-border space-y-3">
+                    <p class="font-extrabold text-navy text-sm sm:text-base">${q.question}</p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                        ${q.options.map((opt, optIdx) => `
+                            <button onclick="checkQuizAnswer(${qIdx}, ${optIdx})"
+                                    id="q-${qIdx}-opt-${optIdx}"
+                                    class="text-left px-4 py-2.5 rounded-xl bg-white border border-ice-border text-xs sm:text-sm font-semibold text-navy hover:border-brand transition">
+                                ${opt}
+                            </button>
+                        `).join('')}
+                    </div>
+                    <div id="q-${qIdx}-rationale" class="hidden text-xs sm:text-sm p-3.5 rounded-xl font-medium"></div>
+                </div>
+            `).join('');
+        }
+
+        function checkQuizAnswer(qIdx, selectedIdx) {
+            const q = SAMPLE_QUIZ[qIdx];
+            const rationaleEl = document.getElementById(`q-${qIdx}-rationale`);
+            const btn = document.getElementById(`q-${qIdx}-opt-${selectedIdx}`);
+
+            if (selectedIdx === q.correct) {
+                btn.classList.add('bg-emerald-50', 'border-emerald-500', 'text-emerald-900');
+                rationaleEl.className = 'text-xs sm:text-sm p-3.5 rounded-xl font-semibold bg-emerald-50 text-emerald-800 border border-emerald-200';
+                rationaleEl.innerHTML = `<strong>✓ Correct!</strong> ${q.rationale}`;
+            } else {
+                btn.classList.add('bg-rose-50', 'border-rose-400', 'text-rose-900');
+                rationaleEl.className = 'text-xs sm:text-sm p-3.5 rounded-xl font-semibold bg-amber-50 text-navy border border-gold';
+                rationaleEl.innerHTML = `<strong>Not quite.</strong> ${q.rationale}`;
+            }
+        }
+
+        function resetSampleQuiz() {
+            renderSampleQuiz();
+        }
+
+        /* Flashcard Controls */
+        function updateFlashcardDisplay() {
+            const card = FLASHCARDS[currentFlashcardIndex];
+            document.getElementById('flashcard-inner').classList.remove('rotate-y-180');
+            document.getElementById('flashcard-front').textContent = card.front;
+            document.getElementById('flashcard-back').innerHTML = card.back.replace('\n', '<br>');
+            document.getElementById('flashcard-counter').textContent = `${currentFlashcardIndex + 1} / ${FLASHCARDS.length}`;
+        }
+
+        function flipFlashcard() {
+            document.getElementById('flashcard-inner').classList.toggle('rotate-y-180');
+        }
+
+        function nextFlashcard() {
+            currentFlashcardIndex = (currentFlashcardIndex + 1) % FLASHCARDS.length;
+            updateFlashcardDisplay();
+        }
+
+        function prevFlashcard() {
+            currentFlashcardIndex = (currentFlashcardIndex - 1 + FLASHCARDS.length) % FLASHCARDS.length;
+            updateFlashcardDisplay();
+        }
+
+        /* Vent Calculator */
+        function calculateVentMetrics() {
+            const vt = parseFloat(document.getElementById('calc-vt')?.value || 500);
+            const pip = parseFloat(document.getElementById('calc-pip')?.value || 30);
+            const plat = parseFloat(document.getElementById('calc-plat')?.value || 20);
+            const peep = parseFloat(document.getElementById('calc-peep')?.value || 5);
+
+            const denom = plat - peep;
+            const cst = denom > 0 ? (vt / denom).toFixed(1) : '—';
+            const raw = (pip - plat).toFixed(1);
+
+            document.getElementById('res-cst').textContent = `${cst} mL/cmH₂O`;
+            document.getElementById('res-raw').textContent = `${raw} cmH₂O/L/sec`;
+        }
+
+        /* Render FAQs */
+        function renderFaqs() {
+            const container = document.getElementById('faq-accordion-container');
+            container.innerHTML = FAQS.map((item, idx) => `
+                <div class="bg-white rounded-2xl border border-slate-100 shadow-xs overflow-hidden">
+                    <button onclick="toggleFaq(${idx})" class="w-full px-6 py-4 text-left flex items-center justify-between font-extrabold text-navy text-base sm:text-lg hover:bg-ice/50 transition">
+                        <span>${item.q}</span>
+                        <span id="faq-icon-${idx}" class="text-gold text-2xl font-extrabold">+</span>
+                    </button>
+                    <div id="faq-ans-${idx}" class="hidden px-6 pb-5 text-sm sm:text-base text-navy-med leading-relaxed border-t border-slate-100 pt-3">
+                        ${item.a}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function toggleFaq(idx) {
+            const ans = document.getElementById(`faq-ans-${idx}`);
+            const icon = document.getElementById(`faq-icon-${idx}`);
+            const isHidden = ans.classList.contains('hidden');
+            ans.classList.toggle('hidden');
+            icon.textContent = isHidden ? '−' : '+';
+        }
+
+        /* Shopping Cart Logic */
+        function addToCart(productId) {
+            const product = PRODUCTS.find(p => p.id === productId);
+            if (!product) return;
+            cart.push(product);
+            updateCartUI();
+            toggleCartDrawer(true);
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            document.getElementById('cart-badge').textContent = cart.length;
+            document.getElementById('drawer-cart-count').textContent = cart.length;
+
+            const container = document.getElementById('cart-items-container');
+            if (cart.length === 0) {
+                container.innerHTML = `
+                    <div class="text-center py-12 space-y-3">
+                        <p class="text-navy-med font-semibold">Your study cart is currently empty.</p>
+                        <button onclick="toggleCartDrawer(false); switchTab('All Products');" class="bg-ice hover:bg-brand-light text-navy font-extrabold px-5 py-2.5 rounded-full text-xs">
+                            Browse Memberships &amp; Practice Exams
+                        </button>
+                    </div>
+                `;
+                document.getElementById('cart-total-price').textContent = '$0.00';
+                return;
+            }
+
+            let total = 0;
+            container.innerHTML = cart.map((item, idx) => {
+                total += item.price;
+                return `
+                    <div class="flex items-center justify-between bg-ice rounded-xl p-3.5 border border-ice-border">
+                        <div>
+                            <h5 class="font-extrabold text-navy text-sm">${item.title}</h5>
+                            <span class="text-xs font-bold text-brand">$${item.price.toFixed(2)} • ${item.billing}</span>
+                        </div>
+                        <button onclick="removeFromCart(${idx})" class="text-xs font-extrabold text-rose-600 hover:underline">Remove</button>
+                    </div>
+                `;
+            }).join('');
+
+            document.getElementById('cart-total-price').textContent = `$${total.toFixed(2)}`;
+        }
+
+        function toggleCartDrawer(open) {
+            const drawer = document.getElementById('cart-drawer');
+            const backdrop = document.getElementById('cart-drawer-backdrop');
+            if (open) {
+                backdrop.classList.remove('hidden');
+                drawer.classList.remove('translate-x-full');
+            } else {
+                backdrop.classList.add('hidden');
+                drawer.classList.add('translate-x-full');
+            }
+        }
+
+        function handleCheckout() {
+            if (cart.length === 0) return;
+            const feedback = document.getElementById('checkout-feedback');
+            feedback.classList.remove('hidden');
+            cart = [];
+            updateCartUI();
+            setTimeout(() => feedback.classList.add('hidden'), 5000);
+        }
+
+        /* Global Search Modal */
+        function openSearchModal() {
+            document.getElementById('search-modal').classList.remove('hidden');
+            document.getElementById('global-search-input').focus();
+            runGlobalSearch();
+        }
+
+        function closeSearchModal() {
+            document.getElementById('search-modal').classList.add('hidden');
+        }
+
+        function runGlobalSearch() {
+            const q = (document.getElementById('global-search-input').value || '').toLowerCase();
+            const res = document.getElementById('global-search-results');
+
+            const matchedProducts = PRODUCTS.filter(p => p.title.toLowerCase().includes(q));
+            const matchedSessions = SESSIONS_40.filter(s => s.title.toLowerCase().includes(q) || s.topic.toLowerCase().includes(q)).slice(0, 6);
+
+            let html = '';
+            matchedProducts.forEach(p => {
+                html += `
+                    <div class="flex items-center justify-between p-3 rounded-xl bg-ice hover:bg-brand-light transition">
+                        <div>
+                            <span class="text-[11px] font-extrabold uppercase text-brand">${p.badge}</span>
+                            <h5 class="font-extrabold text-navy text-sm">${p.title} ($${p.price.toFixed(2)})</h5>
+                        </div>
+                        <button onclick="closeSearchModal(); addToCart('${p.id}');" class="bg-gold text-navy font-extrabold px-3.5 py-1.5 rounded-full text-xs">Add +</button>
+                    </div>
+                `;
+            });
+
+            matchedSessions.forEach(s => {
+                html += `
+                    <div class="flex items-center justify-between p-3 rounded-xl bg-slate-50 hover:bg-ice transition">
+                        <div>
+                            <span class="text-[11px] font-extrabold text-navy-med">Live Session #${s.num} • ${s.topic}</span>
+                            <h5 class="font-extrabold text-navy text-sm">${s.title}</h5>
+                        </div>
+                        <button onclick="closeSearchModal(); switchTab('Live Review');" class="text-xs font-extrabold text-brand hover:underline">View Schedule &rarr;</button>
+                    </div>
+                `;
+            });
+
+            res.innerHTML = html || `<p class="text-sm text-navy-med p-4 text-center">No matching sessions or plans found.</p>`;
+        }
+
+        /* Member Account Registration Modal */
+        function openAccountModal() {
+            document.getElementById('account-modal').classList.remove('hidden');
+        }
+
+        function closeAccountModal() {
+            document.getElementById('account-modal').classList.add('hidden');
+        }
+
+        function handleRegistrationSubmit(e) {
+            e.preventDefault();
+            const selectedPlan = document.getElementById('reg-plan-select').value;
+            closeAccountModal();
+            addToCart(selectedPlan);
+        }
+
+        /* Requirement 3: "Get Ready for 2027 RTE" Pop-up Modal */
+        function openRteModal() {
+            document.getElementById('rte-modal').classList.remove('hidden');
+        }
+
+        function closeRteModal() {
+            document.getElementById('rte-modal').classList.add('hidden');
+        }
+
+        /* Mobile Menu Toggle */
+        function toggleMobileMenu() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+            document.getElementById('menu-icon-open').classList.toggle('hidden');
+            document.getElementById('menu-icon-close').classList.toggle('hidden');
+        }
+
+        /* Contact Form Submit Handler */
+        function handleContactSubmit(e) {
+            e.preventDefault();
+            const fb = document.getElementById('contact-form-feedback');
+            fb.classList.remove('hidden');
+            e.target.reset();
+            setTimeout(() => fb.classList.add('hidden'), 5000);
+        }
+
+        /* Close Modals on Escape or Backdrop Click */
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeRteModal();
+                closeSearchModal();
+                closeAccountModal();
+                toggleCartDrawer(false);
+            }
+        });
+
+        window.addEventListener('DOMContentLoaded', initApp);
+    </script>
+</body>
+</html>
